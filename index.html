@@ -9,14 +9,26 @@
   <div id="output">Loading...</div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="module">
-    
-    // Replace with your Supabase URL + anon key later
     const SUPABASE_URL = "https://yykqbqdosdvigghaguvd.supabase.co";
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5a3FicWRvc2R2aWdnaGFndXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMjg4MDIsImV4cCI6MjA5OTgwNDgwMn0.u-luZHqcc9aeHLGHIrWOPaK4vVXIHmwv3r3yZVvW7DU";
+
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     
-    // Example placeholder fetch
-    document.getElementById("output").textContent = "Dashboard initialized.";
+    async function testQuery() {
+      const { data, error } = await client
+        .from("Catholic-Topics")
+        .select("*")
+        .limit(1);
+      
+      if (error) {
+        document.getElementById("output").textContent = "Error: " + error.message;
+        return;
+      }
+      
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
     
-  </script>
+    testQuery();
+</script>
 </body>
 </html>
