@@ -7,14 +7,16 @@
 <body>
   <h1>Dashboard</h1>
   <div id="output">Loading...</div>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="module">
+    
     // Replace with your Supabase URL + anon key later
-    const SUPABASE_URL = "https://yykqbqdosdvigghaguvd.supabase.co/rest/v1/";
+    const SUPABASE_URL = "https://yykqbqdosdvigghaguvd.supabase.co";
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5a3FicWRvc2R2aWdnaGFndXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMjg4MDIsImV4cCI6MjA5OTgwNDgwMn0.u-luZHqcc9aeHLGHIrWOPaK4vVXIHmwv3r3yZVvW7DU";
-
+    
     // Example placeholder fetch
     document.getElementById("output").textContent = "Dashboard initialized.";
+    
   </script>
 </body>
 </html>
