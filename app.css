@@ -1,0 +1,137 @@
+:root {
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --border-color: #e0e0e0;
+  --bg-app: #f7f7f9;
+  --bg-card: #ffffff;
+  --accent: #2f4f9d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: var(--bg-app);
+  color: #222;
+}
+
+.app-header {
+  padding: var(--space-md) var(--space-lg);
+  font-size: 28px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  background: #fff;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: calc(100vh - 72px);
+  overflow: hidden;
+}
+
+.sidebar {
+  background: #fff;
+  border-right: 1px solid var(--border-color);
+  padding: var(--space-md);
+  overflow-y: auto;
+}
+
+.content {
+  padding: var(--space-lg);
+  overflow-y: auto;
+}
+
+.category {
+  margin-bottom: var(--space-md);
+}
+
+.category-header {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-header span.chevron {
+  font-size: 14px;
+  color: #777;
+  transition: transform 0.2s ease;
+}
+
+.category-header.open span.chevron {
+  transform: rotate(90deg);
+}
+
+.category-items {
+  margin-left: 12px;
+  display: none;
+}
+
+.category-items.open {
+  display: block;
+}
+
+.topic {
+  padding: 6px 4px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 4px;
+  transition: background 0.15s ease;
+}
+
+.topic:hover {
+  background: #f0f2fb;
+}
+
+.topic.selected {
+  background: #e8ecf8;
+}
+
+.topic-card {
+  background: var(--bg-card);
+  padding: var(--space-md);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: var(--space-md);
+}
+
+.topic-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--accent);
+}
+
+.topic-body {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.fade {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.empty-state {
+  color: #777;
+  font-size: 18px;
+}
