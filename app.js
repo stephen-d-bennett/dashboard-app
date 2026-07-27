@@ -147,7 +147,7 @@ function loadTopic(topicId) {
     <article class="topic-card fade">
       <h2 class="topic-title">${topic.title}</h2>
       <div class="topic-body">
-        ${renderContent(topic.content)}
+        ${renderContent(topic.content.content)}
       </div>
     </article>
   `;
