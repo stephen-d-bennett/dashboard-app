@@ -1,4 +1,4 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+// import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 
 alert("JS is running");
 
