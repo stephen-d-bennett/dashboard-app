@@ -2,27 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Catholic Topics Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="app.css">
+  <title>Dashboard App</title>
+
+  <!-- Your CSS stays exactly as it is -->
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <header class="app-header">Catholic Topics</header>
 
-  <div class="app">
-    <aside class="sidebar" id="sidebar"></aside>
+  <div id="sidebar"></div>
+  <div id="content"></div>
 
-    <main class="content" id="content">
-      <div class="empty-state">Select a topic from the left.</div>
-    </main>
-  </div>
+  <!-- Load Supabase v1 (browser-friendly, global supabase object) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
 
-  <!-- Supabase MUST be loaded as a module -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Create the Supabase client globally -->
+  <script>
+    const supabaseUrl = "https://yykqbqdosdvigghaguvd.supabase.co";
+    const supabaseKey = "YOUR_KEY_HERE";
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  </script>
 
-  <!-- Your app MUST also be a module -->
-  <script type="module" src="./app.js"></script>
+  <!-- Load your app logic (plain JS, NOT a module) -->
+  <script src="./app.js"></script>
 
 </body>
 </html>
