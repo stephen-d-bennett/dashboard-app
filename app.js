@@ -25,7 +25,35 @@ async function loadTopicsFromDB() {
   buildSidebar(topics);
 }
 
-loadTopicsFromDB();
+// loadTopicsFromDB();
+
+// ---------------------------
+// TEMP: Hardcoded topics
+// ---------------------------
+topics = [
+  {
+    id: 1,
+    title: "Test Topic",
+    category: "Test Category",
+    content: {
+      content: [
+        {
+          type: "text_block",
+          level: 1,
+          content: ["This is a test paragraph."]
+        },
+        {
+          type: "numbered_list",
+          level: 1,
+          content: ["Item one", "Item two"]
+        }
+      ]
+    }
+  }
+];
+
+buildSidebar(topics);
+loadTopic(1);
 
 // ---------------------------
 // Build sidebar dynamically
