@@ -1,3 +1,5 @@
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+
 alert("JS is running");
 
 // ---------------------------
@@ -5,9 +7,9 @@ alert("JS is running");
 // ---------------------------
 const supabaseUrl = "https://yykqbqdosdvigghaguvd.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5a3FicWRvc2R2aWdnaGFndXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMjg4MDIsImV4cCI6MjA5OTgwNDgwMn0.u-luZHqcc9aeHLGHIrWOPaK4vVXIHmwv3r3yZVvW7DU";
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+alert("After Supabase Init");
 
 let topics = [];
 
@@ -57,6 +59,9 @@ topics = [
 
 buildSidebar(topics);
 loadTopic(1);
+
+alert("After building the sidebar with hard coded topics");
+
 
 // ---------------------------
 // Build sidebar dynamically
