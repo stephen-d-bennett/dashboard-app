@@ -67,28 +67,30 @@ ol {
   margin-left: 20px;
 }
 
+
 /* Category headers */
 .category-header {
   font-weight: bold;
   padding: 10px;
-  background-color: #34495e;   /* darker, matches sidebar */
+  background-color: #1a252f;   /* darker than sidebar */
   color: #ecf0f1;               /* light text */
   cursor: pointer;
-  border-bottom: 1px solid #2c3e50;
+  border-bottom: 1px solid #0f1419;
+  margin-bottom: 5px;
 }
 
 /* Topic items */
 .category-items .topic {
   padding: 8px 15px;
   cursor: pointer;
-  background-color: #3d566e;    /* medium shade */
+  background-color: #34495e;    /* medium shade */
   color: #ecf0f1;
   border-bottom: 1px solid #2c3e50;
 }
 
 /* Hover effect */
 .category-items .topic:hover {
-  background-color: #4a6b85;   /* slightly lighter */
+  background-color: #3d566e;   /* slightly lighter */
 }
 
 /* Hide items until category is clicked */
