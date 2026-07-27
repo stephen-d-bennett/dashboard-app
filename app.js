@@ -1,7 +1,7 @@
 alert("JS is running");
 
 // ---------------------------------------------
-// Fallback topics (used if Supabase fails)
+// Fallback topic (used if Supabase fails)
 // ---------------------------------------------
 let topics = [
   {
@@ -10,16 +10,8 @@ let topics = [
     category: "Test Category",
     content: {
       content: [
-        {
-          type: "text_block",
-          level: 1,
-          content: ["This is a test paragraph."]
-        },
-        {
-          type: "numbered_list",
-          level: 1,
-          content: ["Item one", "Item two"]
-        }
+        { type: "text_block", level: 1, content: ["This is a test paragraph."] },
+        { type: "numbered_list", level: 1, content: ["Item one", "Item two"] }
       ]
     }
   }
@@ -118,45 +110,42 @@ function loadTopic(topicId) {
 // ---------------------------------------------
 // Load Topics from Supabase (v1 global client)
 // ---------------------------------------------
-// Assumes table "Catholic-Topics" with columns:
-// id, title, category, content (JSON matching your structure)
 async function loadTopicsFromDB() {
-  try {
-    const { data, error } = await supabase
-      .from("Catholic-Topics")
-      .select("*");
+  const { data, error } = await supabase
+    .from("Catholic-Topics")
+    .select("*");
 
-    if (error) {
-      console.error("Supabase error:", error);
-      return;
-    }
+  console.log("Supabase returned:", data);
 
-    if (!data || data.length === 0) {
-      console.warn("No topics returned from Supabase.");
-      return;
-    }
-
-    // If your "content" column is already JSON in the right shape,
-    // this will just pass it through.
-    topics = data.map(row => ({
-      id: row.id,
-      title: row.title,
-      category: row.category,
-      content: row.content
-    }));
-
-    buildSidebar(topics);
-    loadTopic(topics[0].id);
-  } catch (e) {
-    console.error("Unexpected error loading topics:", e);
+  if (error) {
+    console.error("Supabase error:", error);
+    return;
   }
+
+  if (!data || data.length === 0) {
+    console.warn("No topics returned from Supabase.");
+    return;
+  }
+
+  // Use your actual column names and parse content if needed
+  topics = data.map(row => ({
+    id: row.id,
+    title: row.title,
+    category: row.category,
+    content: typeof row.content === "string"
+      ? JSON.parse(row.content)   // content stored as TEXT containing JSON
+      : row.content               // or already JSON
+  }));
+
+  buildSidebar(topics);
+  loadTopic(topics[0].id);
 }
 
 // ---------------------------------------------
 // Initialize App
 // ---------------------------------------------
 buildSidebar(topics);   // fallback visible immediately
-loadTopic(1);           // show test topic
-loadTopicsFromDB();     // then try real data
+loadTopic(1);           // show fallback topic
+loadTopicsFromDB();     // then load real data
 
 alert("BOTTOM OF FILE");
