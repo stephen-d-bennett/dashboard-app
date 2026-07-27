@@ -10,6 +10,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // ---------------------------------------------
 // Load Topics from Supabase
 // ---------------------------------------------
+/*
 async function loadTopics() {
   const { data, error } = await client
     .from("Catholic-Topics")
@@ -26,6 +27,77 @@ async function loadTopics() {
   renderCategories(data);
   renderTopicList(data);
 }
+*/
+async function loadTopics() {
+  const { data, error } = await supabase
+    .from('Catholic-Topics')
+    .select('*');
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  // Group rows by category
+  const categories = {};
+
+  data.forEach(row => {
+    if (!categories[row.category]) {
+      categories[row.category] = [];
+    }
+    categories[row.category].push({
+      title: row.title,
+      content: row.content
+    });
+  });
+
+  return categories;
+}
+
+async function buildSidebar() {
+  const categories = await loadTopics();
+  const sidebar = document.getElementById('sidebar');
+
+  sidebar.innerHTML = ''; // Clear existing sidebar
+
+  Object.keys(categories).forEach(cat => {
+    // Category header
+    const header = document.createElement('div');
+    header.className = 'category-header';
+    header.textContent = cat;
+
+    // Container for titles
+    const items = document.createElement('div');
+    items.className = 'category-items';
+
+    // Add each title under this category
+    categories[cat].forEach(topic => {
+      const item = document.createElement('div');
+      item.className = 'topic';
+      item.textContent = topic.title;
+
+      item.addEventListener('click', () => {
+        showContent(topic.content);
+      });
+
+      items.appendChild(item);
+    });
+
+    // Expand/collapse behavior
+    header.addEventListener('click', () => {
+      items.style.display = items.style.display === 'block' ? 'none' : 'block';
+    });
+
+    sidebar.appendChild(header);
+    sidebar.appendChild(items);
+  });
+}
+
+function showContent(text) {
+  const panel = document.getElementById('content-panel');
+  panel.innerHTML = text;
+}
+
 
 // ---------------------------------------------
 // Render Categories
