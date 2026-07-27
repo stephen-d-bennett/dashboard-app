@@ -1,3 +1,5 @@
+alert("JS is running");
+
 // ---------------------------
 // Supabase Initialization
 // ---------------------------
