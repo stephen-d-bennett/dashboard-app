@@ -66,3 +66,32 @@ body {
 ol {
   margin-left: 20px;
 }
+
+/* Category headers */
+.category-header {
+  font-weight: bold;
+  padding: 10px;
+  background-color: #34495e;   /* darker, matches sidebar */
+  color: #ecf0f1;               /* light text */
+  cursor: pointer;
+  border-bottom: 1px solid #2c3e50;
+}
+
+/* Topic items */
+.category-items .topic {
+  padding: 8px 15px;
+  cursor: pointer;
+  background-color: #3d566e;    /* medium shade */
+  color: #ecf0f1;
+  border-bottom: 1px solid #2c3e50;
+}
+
+/* Hover effect */
+.category-items .topic:hover {
+  background-color: #4a6b85;   /* slightly lighter */
+}
+
+/* Hide items until category is clicked */
+.category-items {
+  display: none;
+}
