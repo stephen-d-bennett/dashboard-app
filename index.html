@@ -5,7 +5,6 @@
   <title>Catholic Topics Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="app.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -19,6 +18,10 @@
     </main>
   </div>
 
+  <!-- Load Supabase FIRST -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Load your app AFTER Supabase -->
   <script src="app.js"></script>
 </body>
 </html>
