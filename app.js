@@ -174,4 +174,6 @@ function renderArticle(item) {
 // ---------------------------------------------
 // Initialize
 // ---------------------------------------------
-loadTopics();
+// loadTopics();
+buildSidebar();
+
