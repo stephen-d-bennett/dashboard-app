@@ -91,8 +91,48 @@ function buildSidebar(data) {
 }
 
 // ---------------------------
+// Content Renderer
+// ---------------------------
+
+function renderContent(blocks) {
+  return blocks.map(renderBlock).join("");
+}
+
+function renderBlock(block) {
+  switch (block.type) {
+    case "text_block":
+      return renderTextBlock(block);
+
+    case "numbered_list":
+      return renderNumberedList(block);
+
+    // Add more types here later
+
+    default:
+      return `<div class="unknown-block">Unsupported block type: ${block.type}</div>`;
+  }
+}
+
+function renderTextBlock(block) {
+  return `
+    <div class="text-block level-${block.level}">
+      ${block.content.map(p => `<p>${p}</p>`).join("")}
+    </div>
+  `;
+}
+
+function renderNumberedList(block) {
+  return `
+    <ol class="numbered-list level-${block.level}">
+      ${block.content.map(item => `<li>${item}</li>`).join("")}
+    </ol>
+  `;
+}
+
+// ---------------------------
 // Load topic content
 // ---------------------------
+
 function loadTopic(topicId) {
   const content = document.getElementById("content");
 
@@ -106,7 +146,9 @@ function loadTopic(topicId) {
   content.innerHTML = `
     <article class="topic-card fade">
       <h2 class="topic-title">${topic.title}</h2>
-      <div class="topic-body">${topic.content}</div>
+      <div class="topic-body">
+        ${renderContent(topic.content)}
+      </div>
     </article>
   `;
 }
