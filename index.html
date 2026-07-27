@@ -18,10 +18,11 @@
     </main>
   </div>
 
-  <!-- Load Supabase FIRST -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase MUST be loaded as a module -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Load your app AFTER Supabase -->
-  <script src="./app.js"></script>
+  <!-- Your app MUST also be a module -->
+  <script type="module" src="./app.js"></script>
+
 </body>
 </html>
