@@ -29,7 +29,7 @@ async function loadTopics() {
 }
 */
 async function loadTopics() {
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from('Catholic-Topics')
     .select('*');
 
@@ -45,10 +45,8 @@ async function loadTopics() {
     if (!categories[row.category]) {
       categories[row.category] = [];
     }
-    categories[row.category].push({
-      title: row.title,
-      content: row.content
-    });
+    // Store the full row, not just title + content
+    categories[row.category].push(row);
   });
 
   return categories;
@@ -76,8 +74,9 @@ async function buildSidebar() {
       item.className = 'topic';
       item.textContent = topic.title;
 
+      // Correct click handler
       item.addEventListener('click', () => {
-        showContent(topic.content);
+        showContent(topic);
       });
 
       items.appendChild(item);
@@ -93,9 +92,10 @@ async function buildSidebar() {
   });
 }
 
-function showContent(text) {
-  const panel = document.getElementById('content-panel');
-  panel.innerHTML = text;
+
+function showContent(item) {
+  // Use your existing renderer to display the topic
+  renderArticle(item);
 }
 
 
@@ -145,7 +145,7 @@ function filterByCategory(category, data) {
 // Render Article (your original renderer)
 // ---------------------------------------------
 function renderArticle(item) {
-  const container = document.getElementById("article");
+  const container = document.getElementById("content-panel");
   container.innerHTML = `<h1>${item.title}</h1>`;
 
   // Your original JSON structure: item.content.content
@@ -170,6 +170,9 @@ function renderArticle(item) {
     }
   });
 }
+
+
+
 
 // ---------------------------------------------
 // Initialize
