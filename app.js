@@ -1,7 +1,7 @@
 alert("JS is running");
 
 // ---------------------------------------------
-// Hardcoded fallback topics (works immediately)
+// Fallback topics (used if Supabase fails)
 // ---------------------------------------------
 let topics = [
   {
@@ -118,25 +118,45 @@ function loadTopic(topicId) {
 // ---------------------------------------------
 // Load Topics from Supabase (v1 global client)
 // ---------------------------------------------
+// Assumes table "Catholic-Topics" with columns:
+// id, title, category, content (JSON matching your structure)
 async function loadTopicsFromDB() {
-  const { data, error } = await supabase
-    .from("Catholic-Topics")
-    .select("*");
+  try {
+    const { data, error } = await supabase
+      .from("Catholic-Topics")
+      .select("*");
 
-  if (error) {
-    console.error("Supabase error:", error);
-    return;
+    if (error) {
+      console.error("Supabase error:", error);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      console.warn("No topics returned from Supabase.");
+      return;
+    }
+
+    // If your "content" column is already JSON in the right shape,
+    // this will just pass it through.
+    topics = data.map(row => ({
+      id: row.id,
+      title: row.title,
+      category: row.category,
+      content: row.content
+    }));
+
+    buildSidebar(topics);
+    loadTopic(topics[0].id);
+  } catch (e) {
+    console.error("Unexpected error loading topics:", e);
   }
-
-  topics = data;
-  buildSidebar(topics);
 }
 
 // ---------------------------------------------
 // Initialize App
 // ---------------------------------------------
-buildSidebar(topics);   // Hardcoded fallback works immediately
-loadTopic(1);           // Load first topic
-loadTopicsFromDB();     // Try loading real data from Supabase
+buildSidebar(topics);   // fallback visible immediately
+loadTopic(1);           // show test topic
+loadTopicsFromDB();     // then try real data
 
 alert("BOTTOM OF FILE");
