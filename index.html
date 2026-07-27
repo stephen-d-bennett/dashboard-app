@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard App</title>
-
-  <!-- Your CSS stays exactly as it is -->
-  <link rel="stylesheet" href="./app.css" />
+  <meta charset="UTF-8">
+  <title>Catholic Topics Dashboard</title>
+  <link rel="stylesheet" href="./app.css">
 </head>
 
 <body>
 
-  <div id="sidebar"></div>
-  <div id="content"></div>
+  <div id="sidebar">
+    <h2>Categories</h2>
+    <div id="category-list">Loading...</div>
+  </div>
 
-  <!-- Load Supabase v1 (browser-friendly, global supabase object) -->
+  <div id="main">
+    <h1>Topics</h1>
+    <div id="topic-list">Loading...</div>
+    <div id="article"></div>
+  </div>
+
+  <!-- Supabase v1 global client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
 
-  <!-- Create the Supabase client globally -->
-  <script>
-    const supabaseUrl = "https://yykqbqdosdvigghaguvd.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5a3FicWRvc2R2aWdnaGFndXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMjg4MDIsImV4cCI6MjA5OTgwNDgwMn0.u-luZHqcc9aeHLGHIrWOPaK4vVXIHmwv3r3yZVvW7DU";
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-  </script>
-
-  <!-- Load your app logic (plain JS, NOT a module) -->
-  <script src="./app.js"></script>
+  <!-- Correct non-hack external JS load -->
+  <script src="./app.js" defer></script>
 
 </body>
 </html>
