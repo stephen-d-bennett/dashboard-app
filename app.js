@@ -1,8 +1,8 @@
 // ---------------------------
 // Supabase Initialization
 // ---------------------------
-const supabaseUrl = "https://YOUR_PROJECT_ID.supabase.co";
-const supabaseKey = "YOUR_PUBLIC_ANON_KEY";
+const supabaseUrl = "https://yykqbqdosdvigghaguvd.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5a3FicWRvc2R2aWdnaGFndXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMjg4MDIsImV4cCI6MjA5OTgwNDgwMn0.u-luZHqcc9aeHLGHIrWOPaK4vVXIHmwv3r3yZVvW7DU";
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 let topics = [];
@@ -12,7 +12,7 @@ let topics = [];
 // ---------------------------
 async function loadTopicsFromDB() {
   const { data, error } = await supabase
-    .from("topics")
+    .from("Catholic-Topics")
     .select("*");
 
   if (error) {
@@ -106,7 +106,7 @@ function loadTopic(topicId) {
   content.innerHTML = `
     <article class="topic-card fade">
       <h2 class="topic-title">${topic.title}</h2>
-      <div class="topic-body">${topic.body}</div>
+      <div class="topic-body">${topic.content}</div>
     </article>
   `;
 }
