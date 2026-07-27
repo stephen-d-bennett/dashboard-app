@@ -183,3 +183,7 @@ function loadTopic(topicId) {
     </article>
   `;
 }
+
+alert("BOTTOM OF FILE");
+
+
