@@ -71,6 +71,12 @@ body {
    SIDEBAR CONTAINER
 --------------------------------------------------*/
 
+#sidebar-wrapper {
+  padding-right: 20px;        /* reveals right curve */
+  margin: 20px;               /* floating card spacing */
+  background: transparent;    /* keeps modern look */
+}
+
 #sidebar {
   width: 260px;
   background: linear-gradient(180deg, #1f2d36 0%, #18242c 100%);
