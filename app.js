@@ -159,6 +159,12 @@ function renderArticle(item) {
       });
     }
 
+    if (block.level === "2" && block.title) {
+      const h2 = document.createElement("h2");
+      h2.textContent = block.title;
+      container.appendChild(h2);
+    }
+
     if (block.type === "numbered_list") {
       const ol = document.createElement("ol");
       block.content.forEach(li => {
