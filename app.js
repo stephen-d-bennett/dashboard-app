@@ -72,6 +72,19 @@ async function buildSidebar() {
       }
     });
 
+    header.addEventListener('click', () => {
+      // Close all other categories
+      document.querySelectorAll('.category-items').forEach(section => {
+        if (section !== items) {
+          section.classList.remove('expanded');
+        }
+    });
+
+  // Toggle the clicked one
+  items.classList.toggle('expanded');
+});
+
+
   items.classList.toggle('expanded');
 });
 
