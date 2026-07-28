@@ -66,7 +66,8 @@ async function buildSidebar() {
       
       items.appendChild(item);
     });
-
+    
+    /*
     header.addEventListener('click', () => {
       document.querySelectorAll('.category-items').forEach(section => {
         if (section !== items) {
@@ -76,7 +77,22 @@ async function buildSidebar() {
 
       items.classList.toggle('expanded');
     });
-        
+    */
+
+    header.addEventListener('click', () => {
+      // Collapse all other categories
+      document.querySelectorAll('.category-items').forEach(section => {
+        if (section !== items) {
+          section.classList.remove('expanded');
+          section.previousSibling.classList.remove('expanded'); // collapse their headers too
+        }
+      });
+
+      // Toggle this one
+      const isExpanded = items.classList.toggle('expanded');
+      header.classList.toggle('expanded', isExpanded);
+    });
+    
     sidebar.appendChild(header);
     sidebar.appendChild(items);
   });
