@@ -81,6 +81,8 @@ async function buildSidebar() {
     sidebar.appendChild(items);
   });
 
+  document.getElementById("content-panel").innerHTML = "<h1>Select a topic</h1>";
+  
 }
 
 function showContent(item) {
