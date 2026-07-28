@@ -91,19 +91,10 @@ body {
   padding: 22px;
   overflow-y: auto;
 
-  /* Make the sidebar float */
   margin: 20px;
-  
-  /* Rounded on all sides */
   border-radius: 14px;
 
-  /* Modern depth */
   box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-
-  /* Subtle border */
-  border-right: 1px solid rgba(255,255,255,0.06);
-
-  /* Premium blur */
   backdrop-filter: blur(6px);
 }
 
