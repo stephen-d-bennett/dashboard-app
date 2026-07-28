@@ -163,7 +163,7 @@ ol {
   background-color: #1a252f;   /* darker than sidebar */
   color: #ecf0f1;               /* light text */
   cursor: pointer;
-  border-bottom: 1px solid #0f1419;
+  /* border-bottom: 1px solid #0f1419;*/
   margin-bottom: 5px;
 }
 
@@ -173,7 +173,7 @@ ol {
   cursor: pointer;
   background-color: #34495e;    /* medium shade */
   color: #ecf0f1;
-  border-bottom: 1px solid #2c3e50;
+  /* border-bottom: 1px solid #2c3e50; */
 }
 
 /* Hover effect */
