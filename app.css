@@ -9,6 +9,7 @@ body {
 #content-panel {
   flex: 1;
   overflow-y: auto;
+  min-width: 0;       /* ← prevents content from pushing sidebar */
 }
 
 /* Sidebar */
@@ -41,10 +42,12 @@ body {
 }
 
 /* Main content */
+
 #main {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+  flex: 1;            /* ← this stabilizes the layout */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .topic-card {
