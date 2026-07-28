@@ -195,31 +195,34 @@ function renderArticle(item) {
       container.appendChild(dl);
     }
 
-    if (block.type === "table") {
+   if (block.type === "table") {
       const table = document.createElement("table");
       table.className = "table-block";
 
-      // Optional header row
-      const header = document.createElement("tr");  
-      ["Virtue", "Description", "Capital Sin"].forEach(text => {
-        const th = document.createElement("th");
-        th.textContent = text;
-        header.appendChild(th);
-      });
-      table.appendChild(header);
+      // Render header if present
+      if (block.header && Array.isArray(block.header)) {
+        const headerRow = document.createElement("tr");
+        block.header.forEach(text => {
+          const th = document.createElement("th");
+          th.textContent = text;
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+      }
 
-      // Data rows
-      block.content.forEach(row => {  
+      // Render rows
+      block.content.forEach(row => {
         const tr = document.createElement("tr");
         row.forEach(cell => {
           const td = document.createElement("td");
           td.textContent = cell;
-          tr.appendChild(td);  
+          tr.appendChild(td);
         });
         table.appendChild(tr);
       });
+
       container.appendChild(table);
-    }
+    } 
   });
 }
 
