@@ -57,7 +57,6 @@ async function buildSidebar() {
       item.className = 'topic';
       item.textContent = topic.title;
 
-      // Correct click handler
       item.addEventListener('click', () => {
         showContent(topic);
       });
@@ -65,33 +64,18 @@ async function buildSidebar() {
       items.appendChild(item);
     });
 
-    header.addEventListener('click', () => {
-      document.querySelectorAll('.category-items').forEach(section => {
-      if (section !== items) {
-        section.classList.remove('expanded');
-      }
-    });
-
+    // Smooth accordion
     header.addEventListener('click', () => {
       // Close all other categories
       document.querySelectorAll('.category-items').forEach(section => {
         if (section !== items) {
           section.classList.remove('expanded');
         }
+      });
+
+      // Toggle this one
+      items.classList.toggle('expanded');
     });
-
-  // Toggle the clicked one
-  items.classList.toggle('expanded');
-});
-
-
-  items.classList.toggle('expanded');
-});
-
-
-  items.style.display = 'block';
-});
-
 
     sidebar.appendChild(header);
     sidebar.appendChild(items);
