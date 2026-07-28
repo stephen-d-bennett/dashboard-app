@@ -28,13 +28,10 @@ body {
 /* -------------------------------------------------
    MAIN CONTENT PANEL
 --------------------------------------------------*/
-
 #content-panel {
-   flex-grow: 1;
    flex: 1;
    overflow-y: auto;
    min-width: 0;
-   min-height: calc(100vh - 40px);
    background: #ffffff;
    padding: 40px;
    border-radius: 12px;
