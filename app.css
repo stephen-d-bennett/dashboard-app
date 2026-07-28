@@ -70,34 +70,18 @@ body {
 /* -------------------------------------------------
    SIDEBAR CONTAINER
 --------------------------------------------------*/
+
 #sidebar {
-   
-   width: 260px;
-   background: linear-gradient(180deg, #1f2d36 0%, #18242c 100%);
-   color: #ecf0f1;
-   padding: 22px;
-   overflow-y: auto;
-   
-   /* Modern rounded panel look */
-   border-radius: 14px 0 0 14px;
-   
-   /* Soft shadow for depth */
-   box-shadow: 
-      inset 0 0 12px rgba(255,255,255,0.04),
-      0 4px 18px rgba(0,0,0,0.25);
-
-   /* Slight inset border for definition */
-   border-right: 1px solid rgba(255,255,255,0.06);
-   
-   /* Make it feel like a floating panel */
-   backdrop-filter: blur(6px);
-
-   /* Add spacing around the sidebar (makes it float) */
-   margin: 20px;
-
-   /* This adds a faint highlight in the corner — very modern. */
-   background-image: radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent);
-   
+  width: 260px;
+  background: linear-gradient(180deg, #1f2d36 0%, #18242c 100%);
+  color: #ecf0f1;
+  padding: 22px;
+  overflow-y: auto;
+  margin: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(6px);
 }
 
 /* -------------------------------------------------
