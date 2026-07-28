@@ -195,7 +195,31 @@ function renderArticle(item) {
       container.appendChild(dl);
     }
 
+    if (block.type === "table") {
+      const table = document.createElement("table");
+      table.className = "table-block";
 
+      // Optional header row
+      const header = document.createElement("tr");  
+      ["Virtue", "Description", "Capital Sin"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        header.appendChild(th);
+      });
+      table.appendChild(header);
+
+      // Data rows
+      block.content.forEach(row => {  
+        const tr = document.createElement("tr");
+        row.forEach(cell => {
+          const td = document.createElement("td");
+          td.textContent = cell;
+          tr.appendChild(td);  
+        });
+        table.appendChild(tr);
+      });
+      container.appendChild(table);
+    }
   });
 }
 
