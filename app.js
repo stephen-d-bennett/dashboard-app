@@ -81,11 +81,7 @@ async function buildSidebar() {
     sidebar.appendChild(items);
   });
 
-  // Put topics back in the main list
-  const allTopics = Object.values(categories).flat();
-  renderTopicList(allTopics);
 }
-
 
 function showContent(item) {
   // Use your existing renderer to display the topic
