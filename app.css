@@ -1,3 +1,6 @@
+/* -------------------------------------------------
+   GLOBAL LAYOUT
+--------------------------------------------------*/
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -6,18 +9,19 @@ body {
   background: #f5f5f5;
 }
 
+/* -------------------------------------------------
+   MAIN CONTENT PANEL
+--------------------------------------------------*/
 #content-panel {
   flex: 1;
   overflow-y: auto;
   min-width: 0;
-
   background: #ffffff;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-
-  max-width: 900px;     /* ← prevents super-wide text */
-  margin: 20px auto;    /* ← centers the content nicely */
+  max-width: 900px;
+  margin: 20px auto;
 }
 
 #content-panel h1 {
@@ -55,75 +59,104 @@ body {
 }
 
 #content-panel > * {
-  margin-bottom: 30px;
-}
-
-#content-panel > * {
   margin-bottom: 32px;
   padding-bottom: 12px;
-  /* border-bottom: 1px solid #e6e6e6; */ 
 }
 
 #content-panel > *:last-child {
   border-bottom: none;
 }
 
-
-/* Sidebar */
+/* -------------------------------------------------
+   SIDEBAR CONTAINER
+--------------------------------------------------*/
 #sidebar {
   width: 260px;
-  background: #2c3e50;
-  color: white;
+  background: #1e2a33;
+  color: #ecf0f1;
   padding: 20px;
   overflow-y: auto;
-  flex-shrink: 0;   /* ← prevents shrinking */
-  flex-grow: 0;     /* ← prevents expanding */
+  border-right: 1px solid #0f1419;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
-#sidebar h2 {
-  margin-top: 0;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.category {
-  padding: 10px;
-  margin-bottom: 5px;
-  background: #34495e;
-  border-radius: 4px;
+/* -------------------------------------------------
+   SIDEBAR CATEGORY HEADERS
+--------------------------------------------------*/
+.category-header {
+  padding: 14px 18px;
+  font-weight: 600;
+  font-size: 15px;
+  background: #253544;
+  color: #ecf0f1;
+  border-radius: 6px;
+  margin-bottom: 6px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease;
 }
 
-.category:hover {
-  background: #3d566e;
+.category-header:hover {
+  background: #2e4154;
 }
 
+/* Arrow icon */
+.category-header::after {
+  content: "▸";
+  font-size: 14px;
+  transition: transform 0.25s ease;
+  opacity: 0.8;
+}
+
+.category-header.expanded::after {
+  transform: rotate(90deg);
+}
+
+/* -------------------------------------------------
+   SIDEBAR CATEGORY ITEMS (Accordion)
+--------------------------------------------------*/
 .category-items {
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.3s ease;
+  margin-bottom: 10px;
 }
+
 .category-items.expanded {
-  max-height: 500px; /* enough to show all items */
+  max-height: 500px;
 }
 
-.category-header {
-  padding: 12px 16px;
-  font-weight: bold;
-  cursor: pointer;
+/* -------------------------------------------------
+   SIDEBAR TOPIC ITEMS
+--------------------------------------------------*/
+.category-items .topic {
+  padding: 10px 18px;
   background: #2c3e50;
-  color: white;
+  color: #ecf0f1;
+  border-radius: 4px;
+  margin: 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-/* Main content */
-
-#main {
-  flex: 1;            /* ← this stabilizes the layout */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.category-items .topic:hover {
+  background: #3d566e;
+  transform: translateX(4px);
 }
 
+/* Active topic highlight */
+.topic.active {
+  background: #4a6a85 !important;
+  font-weight: 600;
+}
+
+/* -------------------------------------------------
+   MAIN TOPIC LIST (cards)
+--------------------------------------------------*/
 .topic-card {
   background: white;
   padding: 15px;
@@ -137,7 +170,9 @@ body {
   background: #f0f0f0;
 }
 
-/* Article viewer */
+/* -------------------------------------------------
+   ARTICLE VIEWER
+--------------------------------------------------*/
 #article h1 {
   margin-top: 0;
 }
@@ -171,29 +206,4 @@ ol {
   font-size: 17px;
   color: #555;
   line-height: 1.6;
-}
-
-/* Category headers */
-.category-header {
-  font-weight: bold;
-  padding: 10px;
-  background-color: #1a252f;   /* darker than sidebar */
-  color: #ecf0f1;               /* light text */
-  cursor: pointer;
-  /* border-bottom: 1px solid #0f1419;*/
-  margin-bottom: 5px;
-}
-
-/* Topic items */
-.category-items .topic {
-  padding: 8px 15px;
-  cursor: pointer;
-  background-color: #34495e;    /* medium shade */
-  color: #ecf0f1;
-  /* border-bottom: 1px solid #2c3e50; */
-}
-
-/* Hover effect */
-.category-items .topic:hover {
-  background-color: #3d566e;   /* slightly lighter */
 }
