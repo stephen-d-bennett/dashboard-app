@@ -39,19 +39,16 @@ async function buildSidebar() {
   const categories = await loadTopics();
   const sidebar = document.getElementById('sidebar');
 
-  sidebar.innerHTML = ''; // Clear existing sidebar
+  sidebar.innerHTML = '';
 
   Object.keys(categories).forEach(cat => {
-    // Category header
     const header = document.createElement('div');
     header.className = 'category-header';
     header.textContent = cat;
 
-    // Container for titles
     const items = document.createElement('div');
     items.className = 'category-items';
 
-    // Add each title under this category
     categories[cat].forEach(topic => {
       const item = document.createElement('div');
       item.className = 'topic';
@@ -64,22 +61,23 @@ async function buildSidebar() {
       items.appendChild(item);
     });
 
-    // Smooth accordion
     header.addEventListener('click', () => {
-      // Close all other categories
       document.querySelectorAll('.category-items').forEach(section => {
         if (section !== items) {
           section.classList.remove('expanded');
         }
       });
 
-      // Toggle this one
       items.classList.toggle('expanded');
     });
 
     sidebar.appendChild(header);
     sidebar.appendChild(items);
   });
+
+  // Put topics back in the main list
+  const allTopics = Object.values(categories).flat();
+  renderTopicList(allTopics);
 }
 
 
