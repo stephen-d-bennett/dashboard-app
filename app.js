@@ -53,11 +53,17 @@ async function buildSidebar() {
       const item = document.createElement('div');
       item.className = 'topic';
       item.textContent = topic.title;
-
+      
+      //item.addEventListener('click', () => {
+      //  showContent(topic);
+      //});
+      
       item.addEventListener('click', () => {
+        document.querySelectorAll('.topic').forEach(t => t.classList.remove('active'));
+        item.classList.add('active');
         showContent(topic);
       });
-
+      
       items.appendChild(item);
     });
 
@@ -70,7 +76,7 @@ async function buildSidebar() {
 
       items.classList.toggle('expanded');
     });
-
+        
     sidebar.appendChild(header);
     sidebar.appendChild(items);
   });
