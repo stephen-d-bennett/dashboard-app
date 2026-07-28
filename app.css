@@ -109,6 +109,26 @@ body {
 /* -------------------------------------------------
    SIDEBAR CATEGORY HEADERS
 --------------------------------------------------*/
+
+/* -------------------------------------------------
+   CATEGORY HEADERS (Primary Level)
+--------------------------------------------------*/
+.category-header {
+  padding: 14px 18px;
+  font-weight: 600;
+  font-size: 15px;
+  background: #253544;
+  color: #ecf0f1;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/*
 .category-header {
   padding: 14px 18px;
   font-weight: 600;
@@ -123,9 +143,21 @@ body {
   justify-content: space-between;
   transition: background 0.2s ease;
 }
+*/
 
 .category-header:hover {
   background: #2e4154;
+  transform: translateX(2px);
+}
+
+/*
+.category-header:hover {
+  background: #2e4154;
+}
+*/
+
+.category-header.expanded {
+  background: #314556;
 }
 
 /* Arrow icon */
@@ -157,6 +189,22 @@ body {
 /* -------------------------------------------------
    SIDEBAR TOPIC ITEMS
 --------------------------------------------------*/
+/* -------------------------------------------------
+   TOPIC BUTTONS (Secondary Level)
+--------------------------------------------------*/
+.topic {
+  padding: 10px 18px;
+  background: #34495e;
+  color: #ecf0f1;
+  border-radius: 4px;
+  margin: 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+  border-left: 4px solid #4a6a85; /* blue-steel accent bar */
+}
+
+/*
 .category-items .topic {
   padding: 10px 18px;
   background: #2c3e50;
@@ -167,17 +215,38 @@ body {
   font-size: 14px;
   transition: background 0.2s ease, transform 0.1s ease;
 }
+*/
 
+.topic:hover {
+  background: #3d566e;
+  transform: translateX(4px);
+  border-left-color: #6a8fb0;
+}
+
+/*
 .category-items .topic:hover {
   background: #3d566e;
   transform: translateX(4px);
 }
+*/
+
+/* Active topic highlight */
+/*
+.topic.active {
+  background: #4a6a85 !important;
+  font-weight: 600;
+}
+*/
 
 /* Active topic highlight */
 .topic.active {
   background: #4a6a85 !important;
   font-weight: 600;
+  border-left-color: #8fb4d6;
+  transform: translateX(4px);
 }
+
+
 
 /* -------------------------------------------------
    MAIN TOPIC LIST (cards)
