@@ -10,24 +10,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // ---------------------------------------------
 // Load Topics from Supabase
 // ---------------------------------------------
-/*
-async function loadTopics() {
-  const { data, error } = await client
-    .from("Catholic-Topics")
-    .select("*")
-    .order("title");
 
-  if (error) {
-    document.getElementById("topic-list").textContent =
-      "Error loading topics.";
-    console.error(error);
-    return;
-  }
-
-  renderCategories(data);
-  renderTopicList(data);
-}
-*/
 async function loadTopics() {
   const { data, error } = await client
     .from('Catholic-Topics')
@@ -82,14 +65,16 @@ async function buildSidebar() {
       items.appendChild(item);
     });
 
-    // Expand/collapse behavior
-    //header.addEventListener('click', () => {
-    //  items.style.display = items.style.display === 'block' ? 'none' : 'block';
-    //});
     header.addEventListener('click', () => {
       document.querySelectorAll('.category-items').forEach(section => {
-      section.style.display = 'none';
+      if (section !== items) {
+        section.classList.remove('expanded');
+      }
     });
+
+  items.classList.toggle('expanded');
+});
+
 
   items.style.display = 'block';
 });
