@@ -168,10 +168,38 @@ function renderArticle(item) {
       });
       container.appendChild(ol);
     }
+
+    if (block.type === "bulleted_list") {
+      const ul = document.createElement("ul");
+      block.content.forEach(li => {
+        const liElem = document.createElement("li");
+        liElem.textContent = li;
+        ul.appendChild(liElem);
+      });
+      container.appendChild(ul);
+    }
+
+    if (block.type === "dictionary") {
+      const dl = document.createElement("dl");
+      dl.className = "dictionary-block";
+
+      block.content.forEach(entry => {
+        const dt = document.createElement("dt");
+        dt.textContent = entry.wd;
+
+        const dd = document.createElement("dd");
+        dd.textContent = entry.def;
+
+        dl.appendChild(dt);
+        dl.appendChild(dd);
+      });
+
+      container.appendChild(dl);
+    }
+
+
   });
 }
-
-
 
 
 // ---------------------------------------------
