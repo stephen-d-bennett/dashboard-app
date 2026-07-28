@@ -221,3 +221,42 @@ ol {
   color: #555;
   line-height: 1.6;
 }
+
+.table-block {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 25px 0;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.table-block th,
+.table-block td {
+  padding: 14px 18px;
+  font-size: 17px;
+  color: #2c3e50;
+  vertical-align: top;
+}
+
+.table-block tr:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.table-block tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+.table-block td + td,
+.table-block th + th {
+  border-left: 1px solid #e3e6ea;
+}
+
+.table-block th {
+  background: #eef2f5;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
