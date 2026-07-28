@@ -98,12 +98,12 @@ body {
   background: #3d566e;
 }
 
+
 .category-items {
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.25s ease;
+  transition: max-height 0.3s ease;
 }
-
 .category-items.expanded {
   max-height: 500px; /* enough to show all items */
 }
