@@ -83,9 +83,17 @@ async function buildSidebar() {
     });
 
     // Expand/collapse behavior
+    //header.addEventListener('click', () => {
+    //  items.style.display = items.style.display === 'block' ? 'none' : 'block';
+    //});
     header.addEventListener('click', () => {
-      items.style.display = items.style.display === 'block' ? 'none' : 'block';
+      document.querySelectorAll('.category-items').forEach(section => {
+      section.style.display = 'none';
     });
+
+  items.style.display = 'block';
+});
+
 
     sidebar.appendChild(header);
     sidebar.appendChild(items);
