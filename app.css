@@ -77,6 +77,17 @@ ol {
   margin-left: 20px;
 }
 
+.dictionary-block dt {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #2c3e50;
+}
+
+.dictionary-block dd {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: #444;
+}
 
 /* Category headers */
 .category-header {
