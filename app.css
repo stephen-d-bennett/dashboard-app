@@ -31,7 +31,7 @@ body {
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  max-width: 900px;
+  max-width: 100%;
   margin: 20px auto;
 }
 
@@ -81,12 +81,6 @@ body {
 /* -------------------------------------------------
    SIDEBAR CONTAINER
 --------------------------------------------------*/
-
-#sidebar-wrapper {
-  padding-right: 20px;        /* reveals right curve */
-  margin: 20px;               /* floating card spacing */
-  background: transparent;    /* keeps modern look */
-}
 
 #sidebar {
   width: 260px;
