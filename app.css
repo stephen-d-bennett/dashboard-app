@@ -83,14 +83,15 @@ body {
 --------------------------------------------------*/
 
 #sidebar {
-  width: 260px;
-  background: linear-gradient(180deg, #1f2d36 0%, #18242c 100%);
-  color: #ecf0f1;
-  padding: 22px;
-  overflow-y: auto;
-  border-radius: 14px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-  backdrop-filter: blur(6px);
+   width: 260px;
+   background: linear-gradient(180deg, #1f2d36 0%, #18242c 100%);
+   color: #ecf0f1;
+   padding: 22px;
+   overflow-y: auto;
+   border-radius: 14px;
+   box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+   backdrop-filter: blur(6px);
+   margin-right: 20px;
 }
 
 /* -------------------------------------------------
