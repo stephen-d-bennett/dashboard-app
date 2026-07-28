@@ -197,8 +197,3 @@ ol {
 .category-items .topic:hover {
   background-color: #3d566e;   /* slightly lighter */
 }
-
-/* Hide items until category is clicked */
-.category-items {
-  display: none;
-}
