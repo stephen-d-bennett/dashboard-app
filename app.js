@@ -10,7 +10,6 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // ---------------------------------------------
 // Load Topics from Supabase
 // ---------------------------------------------
-
 async function loadTopics() {
   const { data, error } = await client
     .from('Catholic-Topics')
@@ -35,6 +34,9 @@ async function loadTopics() {
   return categories;
 }
 
+// ---------------------------------------------
+// Build the Sidebar
+// ---------------------------------------------
 async function buildSidebar() {
   const categories = await loadTopics();
   const sidebar = document.getElementById('sidebar');
@@ -66,18 +68,6 @@ async function buildSidebar() {
       
       items.appendChild(item);
     });
-    
-    /*
-    header.addEventListener('click', () => {
-      document.querySelectorAll('.category-items').forEach(section => {
-        if (section !== items) {
-          section.classList.remove('expanded');
-        }
-      });
-
-      items.classList.toggle('expanded');
-    });
-    */
 
     header.addEventListener('click', () => {
       // Collapse all other categories
@@ -98,14 +88,15 @@ async function buildSidebar() {
   });
 
   document.getElementById("content-panel").innerHTML = "<h1>Select a topic</h1>";
-  
 }
 
+// ---------------------------------------------
+// Use the Renderer to show the Topic Content
+// ---------------------------------------------
 function showContent(item) {
   // Use your existing renderer to display the topic
   renderArticle(item);
 }
-
 
 // ---------------------------------------------
 // Render Categories
@@ -167,12 +158,14 @@ function renderArticle(item) {
       });
     }
 
+    // Level 2 Titles
     if (block.level === "2" && block.title) {
       const h2 = document.createElement("h2");
       h2.textContent = block.title;
       container.appendChild(h2);
     }
 
+    // Render Numbered Lists
     if (block.type === "numbered_list") {
       const ol = document.createElement("ol");
       block.content.forEach(li => {
@@ -183,6 +176,7 @@ function renderArticle(item) {
       container.appendChild(ol);
     }
 
+    // Render Bulleter Lists
     if (block.type === "bulleted_list") {
       const ul = document.createElement("ul");
       block.content.forEach(li => {
@@ -193,6 +187,7 @@ function renderArticle(item) {
       container.appendChild(ul);
     }
 
+    // Render Dictionaries
     if (block.type === "dictionary") {
       const dl = document.createElement("dl");
       dl.className = "dictionary-block";
@@ -211,6 +206,7 @@ function renderArticle(item) {
       container.appendChild(dl);
     }
 
+   //Render Tables
    if (block.type === "table") {
       const table = document.createElement("table");
       table.className = "table-block";
@@ -246,6 +242,5 @@ function renderArticle(item) {
 // ---------------------------------------------
 // Initialize
 // ---------------------------------------------
-// loadTopics();
 buildSidebar();
 
