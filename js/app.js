@@ -39,9 +39,9 @@ async function loadTopics() {
 // ---------------------------------------------
 async function buildSidebar() {
   const categories = await loadTopics();
-  const sidebar = document.getElementById('sidebar');
+  const container = document.getElementById('sidebar-categories');
 
-  sidebar.innerHTML = '';
+  container.innerHTML = ''; // only clear categories, NOT the settings button
 
   Object.keys(categories).forEach(cat => {
     const header = document.createElement('div');
@@ -55,36 +55,30 @@ async function buildSidebar() {
       const item = document.createElement('div');
       item.className = 'topic';
       item.textContent = topic.title;
-      
-      //item.addEventListener('click', () => {
-      //  showContent(topic);
-      //});
-      
+
       item.addEventListener('click', () => {
         document.querySelectorAll('.topic').forEach(t => t.classList.remove('active'));
         item.classList.add('active');
         showContent(topic);
       });
-      
+
       items.appendChild(item);
     });
 
     header.addEventListener('click', () => {
-      // Collapse all other categories
       document.querySelectorAll('.category-items').forEach(section => {
         if (section !== items) {
           section.classList.remove('expanded');
-          section.previousSibling.classList.remove('expanded'); // collapse their headers too
+          section.previousSibling.classList.remove('expanded');
         }
       });
 
-      // Toggle this one
       const isExpanded = items.classList.toggle('expanded');
       header.classList.toggle('expanded', isExpanded);
     });
-    
-    sidebar.appendChild(header);
-    sidebar.appendChild(items);
+
+    container.appendChild(header);
+    container.appendChild(items);
   });
 
   document.getElementById("content-panel").innerHTML = "<h1>Select a topic</h1>";
