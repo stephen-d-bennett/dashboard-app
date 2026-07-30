@@ -248,9 +248,8 @@ buildSidebar();
 // Preferences Modal Logic
 // -------------------------------
 
-// Open modal
-document.getElementById("settings-gear").onclick = () => {
-  	document.getElementById("preferences-modal").classList.remove("hidden");
+document.getElementById("sidebar-settings").onclick = () => {
+	document.getElementById("preferences-modal").classList.remove("hidden");
 };
 
 // Close modal

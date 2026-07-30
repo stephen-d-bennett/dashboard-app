@@ -88,16 +88,33 @@ body {
 --------------------------------------------------*/
 
 #sidebar {
-  width: 260px;
-  background: linear-gradient(180deg, var(--brand-dark), var(--brand));
-  color: var(--layout-text-light);
-  padding: 22px;
-  overflow-y: auto;
-  border-radius: 14px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-  backdrop-filter: blur(6px);
-  margin-right: 20px;
-  max-height: 100vh;
+  	width: 260px;
+  	background: linear-gradient(180deg, var(--brand-dark), var(--brand));
+  	color: var(--layout-text-light);
+  	padding: 22px;
+  	overflow-y: auto;
+  	border-radius: 14px;
+  	box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  	backdrop-filter: blur(6px);
+  	margin-right: 20px;
+  	max-height: 100vh;
+}
+
+#sidebar-settings {
+	margin-top: 20px;
+  	padding: 12px 16px;
+  	background: var(--brand-dark);
+  	color: var(--layout-text-light);
+  	border-radius: 6px;
+  	cursor: pointer;
+  	font-size: 15px;
+  	text-align: center;
+  	transition: background 0.2s ease, transform 0.1s ease;
+}
+
+#sidebar-settings:hover {
+  	background: var(--brand);
+  	transform: translateX(3px);
 }
 
 /* -------------------------------------------------
