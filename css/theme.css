@@ -4,6 +4,7 @@
 --------------------------------------------------*/
 
 /* Default fallback values (before JS loads) */
+
 :root {
   --brand: #253544;
   --brand-light: #34506a;
@@ -12,15 +13,16 @@
   --brand-accent: #2f4f6a;
   --brand-accent-light: #3f6a8f;
 
-  --text: var(--brand-dark);
+  /* LIGHT UI RESTORED */
+  --text: #333333;
   --text-light: #ffffff;
 
-  --bg: var(--brand-lighter);
-  --bg-panel: var(--brand-light);
-  --bg-accent: var(--brand-accent-light);
+  --bg: #f4f4f4;          /* page background */
+  --bg-panel: #ffffff;    /* content panel */
+  --bg-accent: #f0f0f0;   /* soft accent */
 
-  --border: var(--brand-dark);
-  --shadow: rgba(0, 0, 0, 0.15);
+  --border: #d0d0d0;
+  --shadow: rgba(0, 0, 0, 0.08);
 }
 
 /* -------------------------------------------------
