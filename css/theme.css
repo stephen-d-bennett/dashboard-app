@@ -1,10 +1,10 @@
 /* -------------------------------------------------
-   THEME — Dynamic CSS Variable System
-   Works with ThemeEngine (theme.js)
+   THEME — Clean Separation of Brand vs Layout
+   Brand = dynamic (ThemeEngine)
+   Layout = static (always light)
 --------------------------------------------------*/
 
-/* Default fallback values (before JS loads) */
-
+/* Brand colors (dynamic, overwritten by ThemeEngine) */
 :root {
   --brand: #253544;
   --brand-light: #34506a;
@@ -13,16 +13,14 @@
   --brand-accent: #2f4f6a;
   --brand-accent-light: #3f6a8f;
 
-  /* LIGHT UI RESTORED */
-  --text: #333333;
-  --text-light: #ffffff;
-
-  --bg: #f4f4f4;          /* page background */
-  --bg-panel: #ffffff;    /* content panel */
-  --bg-accent: #f0f0f0;   /* soft accent */
-
-  --border: #d0d0d0;
-  --shadow: rgba(0, 0, 0, 0.08);
+  /* Layout colors (static, NOT overwritten) */
+  --layout-bg: #f4f4f4;            /* Page background */
+  --layout-panel-bg: #ffffff;      /* Content panel */
+  --layout-panel-accent: #f0f0f0;  /* Soft accent */
+  --layout-text: #333333;          /* Main text */
+  --layout-text-light: #ffffff;    /* Light text */
+  --layout-border: #d0d0d0;        /* Panel borders */
+  --layout-shadow: rgba(0, 0, 0, 0.08);
 }
 
 /* -------------------------------------------------
@@ -30,8 +28,8 @@
 --------------------------------------------------*/
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: var(--layout-bg);
+  color: var(--layout-text);
   font-family: system-ui, sans-serif;
   margin: 0;
   padding: 0;
@@ -43,9 +41,9 @@ body {
 
 header {
   background-color: var(--brand);
-  color: var(--text-light);
+  color: var(--layout-text-light);
   padding: 1rem;
-  box-shadow: 0 2px 4px var(--shadow);
+  box-shadow: 0 2px 4px var(--layout-shadow);
 }
 
 h1, h2, h3 {
@@ -57,12 +55,12 @@ h1, h2, h3 {
 --------------------------------------------------*/
 
 .panel {
-  background-color: var(--bg-panel);
-  border: 1px solid var(--border);
+  background-color: var(--layout-panel-bg);
+  border: 1px solid var(--layout-border);
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem 0;
-  box-shadow: 0 2px 4px var(--shadow);
+  box-shadow: 0 2px 4px var(--layout-shadow);
 }
 
 /* -------------------------------------------------
@@ -71,7 +69,7 @@ h1, h2, h3 {
 
 button {
   background-color: var(--brand);
-  color: var(--text-light);
+  color: var(--layout-text-light);
   border: 1px solid var(--brand-dark);
   padding: 0.6rem 1rem;
   border-radius: 6px;
@@ -83,7 +81,6 @@ button:hover {
   background-color: var(--brand-light);
 }
 
-/* Accent buttons */
 button.accent {
   background-color: var(--brand-accent);
   border-color: var(--brand-dark);
@@ -98,9 +95,9 @@ button.accent:hover {
 --------------------------------------------------*/
 
 input, select, textarea {
-  background-color: var(--bg-panel);
-  color: var(--text);
-  border: 1px solid var(--border);
+  background-color: var(--layout-panel-bg);
+  color: var(--layout-text);
+  border: 1px solid var(--layout-border);
   padding: 0.5rem;
   border-radius: 4px;
 }
@@ -124,12 +121,12 @@ a:hover {
 }
 
 /* -------------------------------------------------
-   SIDEBAR (if you use one)
+   SIDEBAR
 --------------------------------------------------*/
 
 .sidebar {
   background-color: var(--brand-dark);
-  color: var(--text-light);
+  color: var(--layout-text-light);
   padding: 1rem;
   width: 250px;
 }
@@ -148,7 +145,7 @@ a:hover {
 
 footer {
   background-color: var(--brand);
-  color: var(--text-light);
+  color: var(--layout-text-light);
   padding: 1rem;
   text-align: center;
 }
