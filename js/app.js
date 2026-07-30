@@ -238,9 +238,38 @@ function renderArticle(item) {
   });
 }
 
-
 // ---------------------------------------------
 // Initialize
 // ---------------------------------------------
 buildSidebar();
+// loadInitialTopic(); // optional
+
+// -------------------------------
+// Preferences Modal Logic
+// -------------------------------
+
+// Open modal
+document.getElementById("settings-gear").onclick = () => {
+  	document.getElementById("preferences-modal").classList.remove("hidden");
+};
+
+// Close modal
+document.getElementById("close-modal").onclick = () => {
+  	document.getElementById("preferences-modal").classList.add("hidden");
+};
+
+// Preset colors
+document.querySelectorAll(".preset").forEach(btn => {
+  	btn.onclick = () => {
+    	Theme.apply(btn.dataset.color);
+  	};
+});
+
+// Custom color
+document.getElementById("apply-custom").onclick = () => {
+  	const hex = document.getElementById("custom-color").value.trim();
+  	Theme.apply(hex);
+};
+
+
 
