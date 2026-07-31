@@ -1,0 +1,31 @@
+/* -------------------------------------------------
+   v2 DESIGN SYSTEM
+   This file imports all v2 CSS modules.
+   Safe to build in parallel with v1.
+   Acts as your roadmap for the redesign.
+--------------------------------------------------*/
+
+/* 1. Design Tokens (colors, spacing, radiuses, shadows) */
+@import "tokens.css";
+
+/* 2. Reset (optional but recommended) */
+@import "reset.css";
+
+/* 3. Base (typography, global elements, default styles) */
+@import "base.css";
+
+/* 4. Layout (global page structure) */
+@import "layout.css";
+
+/* 5. Components (each BEM block gets its own file) */
+@import "sidebar.css";
+@import "content-panel.css";
+@import "topic-card.css";
+@import "term.css";
+@import "modal.css";
+@import "table.css";
+@import "dictionary.css";
+@import "article.css";
+
+/* 6. Utilities (spacing helpers, visibility helpers, etc.) */
+@import "utilities.css";

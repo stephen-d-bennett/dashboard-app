@@ -1,0 +1,93 @@
+/* -------------------------------------------------
+   CONTENT PANEL (v2)
+   Notes:
+   - This is the main reading surface.
+   - It must scroll independently of the sidebar.
+   - Padding defines the “breathing room” for all content.
+   - Typography here sets the default reading rhythm.
+--------------------------------------------------*/
+
+.content-panel {
+  /* Positioning: scroll container */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Critical: isolates scrolling from sidebar */
+  width: 100%;
+  height: 100%;
+
+  /* Box Model: main spacing */
+  padding: var(--space-6); /* This defines the entire reading feel */
+  box-sizing: border-box;
+
+  /* Visual */
+  background: var(--color-surface);
+
+  /* Typography: base reading style */
+  color: var(--color-text);
+  line-height: var(--line-height-relaxed);
+
+  /* Interaction */
+  transition: background var(--transition-normal);
+}
+
+/* Header: title + optional actions */
+.content-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border); /* Important visual anchor */
+
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+/* Section: logical content grouping */
+.content-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+
+  padding: var(--space-4) 0;
+
+  color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+}
+
+/* Modifier: tighter layout */
+.content-panel--condensed {
+  padding: var(--space-4); /* Smaller breathing room */
+}
+
+/* Modifier: elevated card-style panel */
+.content-panel--card {
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md); /* Gives depth for standalone panels */
+}
+
+/* -------------------------------------------------
+   RESPONSIVE
+   Notes:
+   - Reduce padding for small screens.
+   - Typography scales down to maintain readability.
+--------------------------------------------------*/
+
+@media (max-width: 900px) {
+  .content-panel {
+    padding: var(--space-4);
+  }
+
+  .content-panel__header {
+    font-size: var(--font-size-md);
+  }
+
+  .content-panel__section {
+    font-size: var(--font-size-sm);
+  }
+}

@@ -1,0 +1,123 @@
+/* -------------------------------------------------
+   BASE STYLES (v2)
+   Global defaults powered entirely by tokens.
+   Designed for easy theming and future adaptation.
+--------------------------------------------------*/
+
+/* 1. Global box model + smoothing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Body defaults */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: background var(--transition-normal), color var(--transition-normal);
+}
+
+/* 3. Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-xxl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-md); }
+h5 { font-size: var(--font-size-sm); }
+h6 { font-size: var(--font-size-xs); }
+
+/* 4. Paragraphs */
+p {
+  margin: var(--space-3) 0;
+  color: var(--color-text);
+}
+
+/* 5. Links */
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-brand-dark);
+}
+
+/* 6. Buttons (baseline styles) */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast);
+}
+
+button:hover {
+  background: var(--color-surface-alt);
+}
+
+/* 7. Inputs */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border var(--transition-fast), background var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-brand);
+}
+
+/* 8. Images */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 9. Lists */
+ul, ol {
+  padding-left: var(--space-4);
+  margin: var(--space-3) 0;
+}
+
+/* 10. Utility defaults */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-4) 0;
+}
+
+code {
+  background: var(--color-surface-alt);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}

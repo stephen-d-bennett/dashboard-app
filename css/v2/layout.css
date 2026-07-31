@@ -1,0 +1,73 @@
+/* -------------------------------------------------
+   LAYOUT (v2)
+   Structural rules for page-level organization.
+   Token-driven, responsive, and easy to adapt.
+--------------------------------------------------*/
+
+/* 1. Root layout container */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* 2. Sidebar region */
+.layout__sidebar {
+  width: 260px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: width var(--transition-normal), background var(--transition-normal);
+}
+
+/* Collapsed sidebar (optional future feature) */
+.layout__sidebar--collapsed {
+  width: 80px;
+}
+
+/* 3. Main content region */
+.layout__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-alt);
+}
+
+/* 4. Header (optional) */
+.layout__header {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 5. Content area */
+.layout__content {
+  flex: 1;
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+
+/* 6. Footer (optional) */
+.layout__footer {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+/* -------------------------------------------------
+   RESPONSIVE BEHAVIOR
+--------------------------------------------------*/
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .layout__sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+}

@@ -1,0 +1,78 @@
+/* -------------------------------------------------
+   TERM COMPONENT (v2)
+   Inline semantic term with hover popup definition.
+   Token-driven, theme-adaptive, BEM-structured.
+--------------------------------------------------*/
+
+.term {
+  position: relative;
+  color: var(--color-brand);
+  cursor: help;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.term:hover {
+  color: var(--color-brand-dark);
+}
+
+/* Popup container */
+.term__popup {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  width: 260px;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+
+  z-index: 100;
+  display: none;
+
+  /* Smooth appearance */
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Show popup on hover */
+.term:hover .term__popup {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Popup title */
+.term__popup-title {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+/* Popup body */
+.term__popup-body {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------
+   MOBILE ADAPTATION
+--------------------------------------------------*/
+
+@media (max-width: 700px) {
+  .term__popup {
+    position: fixed;
+    bottom: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - var(--space-8));
+    max-width: 340px;
+  }
+}

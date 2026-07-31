@@ -1,0 +1,111 @@
+/* -------------------------------------------------
+   MODAL (v2)
+   Notes:
+   - Backdrop controls dimming + click-to-close.
+   - Modal uses scale animation for subtle polish.
+   - Width is fixed for readability, not arbitrary.
+   - z-index values are intentionally high.
+--------------------------------------------------*/
+
+/* Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 900; /* Below modal, above UI */
+
+  background: var(--color-backdrop); /* Typically rgba(0,0,0,0.5) */
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity var(--transition-normal);
+}
+
+/* Backdrop visible */
+.modal-backdrop--visible {
+  opacity: 1;
+  pointer-events: auto; /* Enables click-to-close */
+}
+
+/* Modal container */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1000; /* Highest layer in the system */
+
+  transform: translate(-50%, -50%) scale(0.96);
+  opacity: 0;
+
+  width: 480px; /* Readability width */
+  max-width: 90%;
+
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+
+  padding: var(--space-6);
+  box-sizing: border-box;
+
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+/* Modal visible */
+.modal--visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Header */
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: var(--space-4);
+
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+/* Body */
+.modal__body {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Footer */
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+
+  margin-top: var(--space-5);
+}
+
+/* -------------------------------------------------
+   RESPONSIVE
+   Notes:
+   - Modal shrinks on small screens.
+   - Padding reduces to avoid cramped layout.
+--------------------------------------------------*/
+
+@media (max-width: 600px) {
+  .modal {
+    padding: var(--space-4);
+    width: 90%;
+  }
+
+  .modal__header {
+    font-size: var(--font-size-md);
+  }
+
+  .modal__body {
+    font-size: var(--font-size-sm);
+  }
+}
