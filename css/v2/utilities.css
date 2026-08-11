@@ -1,0 +1,87 @@
+/* -------------------------------------------------
+   UTILITIES (v2)
+   Notes:
+   - Minimal helper classes for spacing, layout tweaks,
+     visibility, and text alignment.
+   - Only includes utilities that are safe and predictable.
+   - Does NOT replace component CSS.
+--------------------------------------------------*/
+
+/* -------------------------------------------------
+   SPACING
+   Notes:
+   - Useful for quick layout adjustments.
+   - All values use design tokens.
+--------------------------------------------------*/
+
+.u-m-0 { margin: 0 !important; }
+.u-p-0 { padding: 0 !important; }
+
+.u-mt-2 { margin-top: var(--space-2) !important; }
+.u-mt-3 { margin-top: var(--space-3) !important; }
+.u-mt-4 { margin-top: var(--space-4) !important; }
+
+.u-mb-2 { margin-bottom: var(--space-2) !important; }
+.u-mb-3 { margin-bottom: var(--space-3) !important; }
+.u-mb-4 { margin-bottom: var(--space-4) !important; }
+
+.u-pt-2 { padding-top: var(--space-2) !important; }
+.u-pt-3 { padding-top: var(--space-3) !important; }
+.u-pt-4 { padding-top: var(--space-4) !important; }
+
+.u-pb-2 { padding-bottom: var(--space-2) !important; }
+.u-pb-3 { padding-bottom: var(--space-3) !important; }
+.u-pb-4 { padding-bottom: var(--space-4) !important; }
+
+/* -------------------------------------------------
+   TEXT ALIGNMENT
+--------------------------------------------------*/
+
+.u-text-center { text-align: center !important; }
+.u-text-right  { text-align: right !important; }
+.u-text-left   { text-align: left !important; }
+
+/* -------------------------------------------------
+   VISIBILITY
+--------------------------------------------------*/
+
+.u-hidden { display: none !important; }
+.u-visible { display: block !important; }
+
+/* -------------------------------------------------
+   FLEX HELPERS
+--------------------------------------------------*/
+
+.u-flex { display: flex !important; }
+.u-flex-center { 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.u-flex-between {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.u-flex-column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* -------------------------------------------------
+   WIDTH HELPERS
+--------------------------------------------------*/
+
+.u-w-100 { width: 100% !important; }
+.u-w-auto { width: auto !important; }
+
+/* -------------------------------------------------
+   DEBUGGING
+   Notes:
+   - Helpful during layout work.
+--------------------------------------------------*/
+
+.u-debug {
+  outline: 1px solid red !important;
+}

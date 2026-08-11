@@ -1,0 +1,117 @@
+/* -------------------------------------------------
+   DICTIONARY (v2)
+   Notes:
+   - Used for term definitions inside the dictionary panel.
+   - Structured, readable, not as “flowy” as article content.
+   - Supports term, pronunciation, part of speech, definition,
+     examples, synonyms, and related terms.
+--------------------------------------------------*/
+
+.dictionary {
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+}
+
+/* -------------------------------------------------
+   TERM HEADER
+--------------------------------------------------*/
+
+.dictionary__term {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.dictionary__pronunciation {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.dictionary__pos {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-brand);
+  margin-bottom: var(--space-4);
+}
+
+/* -------------------------------------------------
+   DEFINITION BLOCKS
+--------------------------------------------------*/
+
+.dictionary__definition {
+  margin-bottom: var(--space-5);
+}
+
+.dictionary__definition-number {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.dictionary__definition-text {
+  margin-bottom: var(--space-3);
+}
+
+/* -------------------------------------------------
+   EXAMPLES
+--------------------------------------------------*/
+
+.dictionary__example {
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+/* -------------------------------------------------
+   SYNONYMS / RELATED TERMS
+--------------------------------------------------*/
+
+.dictionary__section-title {
+  font-weight: 600;
+  margin: var(--space-5) 0 var(--space-3);
+  font-size: var(--font-size-md);
+}
+
+.dictionary__list {
+  margin-left: var(--space-5);
+  list-style-type: disc;
+}
+
+.dictionary__list li {
+  margin-bottom: var(--space-2);
+}
+
+/* -------------------------------------------------
+   INLINE LINKS
+--------------------------------------------------*/
+
+.dictionary a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.dictionary a:hover {
+  color: var(--color-brand-dark);
+}
+
+/* -------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------*/
+
+@media (max-width: 600px) {
+  .dictionary {
+    font-size: var(--font-size-sm);
+    padding: var(--space-4);
+  }
+
+  .dictionary__term {
+    font-size: var(--font-size-lg);
+  }
+}
