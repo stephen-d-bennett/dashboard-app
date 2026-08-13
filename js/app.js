@@ -19,17 +19,21 @@ async function loadTopics() {
     console.error(error);
     return;
   }
+  
+  // Group rows by categories array
+	const categories = {};
 
-  // Group rows by category
-  const categories = {};
+	data.forEach(row => {
+  	// Ensure categories exists and is an array
+  	const cats = Array.isArray(row.categories) ? row.categories : [];
 
-  data.forEach(row => {
-    if (!categories[row.category]) {
-      categories[row.category] = [];
-    }
-    // Store the full row, not just title + content
-    categories[row.category].push(row);
-  });
+  	cats.forEach(cat => {
+    	if (!categories[cat]) {
+      		categories[cat] = [];
+    	}
+    	categories[cat].push(row);
+  	});
+	});
 
   return categories;
 }
@@ -96,7 +100,17 @@ function showContent(item) {
 // Render Categories
 // ---------------------------------------------
 function renderCategories(data) {
-  const categories = [...new Set(data.map(item => item.category))];
+  
+  //const categories = [...new Set(data.map(item => item.category))];
+  
+  const categories = [
+  	...new Set(
+    	data.flatMap(item => 
+    		Array.isArray(item.categories) ? item.categories : []
+    	)
+		)
+	];
+
   const container = document.getElementById("category-list");
   container.innerHTML = "";
 
@@ -129,7 +143,12 @@ function renderTopicList(data) {
 // Filter by Category
 // ---------------------------------------------
 function filterByCategory(category, data) {
-  const filtered = data.filter(item => item.category === category);
+	const filtered = data.filter(item =>
+  	Array.isArray(item.categories) && item.categories.includes(category)
+	);
+
+  // const filtered = data.filter(item => item.category === category);
+  
   renderTopicList(filtered);
   document.getElementById("article").innerHTML = "";
 }
