@@ -153,7 +153,7 @@ function renderArticle(item) {
     }
 
     // Level 2 Titles
-    if (block.level === "2" && block.title) {
+    if (block.level === 2 && block.title) {
       const h2 = document.createElement("h2");
       h2.textContent = block.title;
       container.appendChild(h2);
@@ -188,10 +188,10 @@ function renderArticle(item) {
 
       block.content.forEach(entry => {
         const dt = document.createElement("dt");
-        dt.textContent = entry.wd;
+        dt.textContent = entry.term;
 
         const dd = document.createElement("dd");
-        dd.textContent = entry.def;
+        dd.textContent = entry.definition;
 
         dl.appendChild(dt);
         dl.appendChild(dd);
