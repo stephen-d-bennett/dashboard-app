@@ -11,25 +11,13 @@
 
   <!-- Shared CSS -->
   <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/app.css">
+  
+  <!-- loader.js chooses correct stylesheet -->
+  <link id="css-loader" rel="stylesheet" href="css/app.css">
 
-  <!-- v2 CSS (optional) -->
-  <!-- 
-    To enable v2 styles:
-    <link rel="stylesheet" href="css/v2/v2.css">
-  -->
-
-  <!-- Theme script (always safe) -->
+  <!-- Theme script shared -->
   <script src="js/theme.js" defer></script>
 
-  <!-- 
-    v1 SCRIPT SLOT (SAFE)
-    This comment block is intentionally placed at the END of <head>,
-    where it cannot affect parsing modes or implicit tag insertion.
-    
-    To enable v1 here (not recommended):
-    <script src="js/app.js" defer></script>
-  -->
 </head>
 
 <body>
@@ -69,21 +57,8 @@
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
 
-  <!-- 
-    v1 SCRIPT (ACTIVE)
-    This is the stable, safe location for v1.
-    Toggle this ON/OFF freely.
-  -->
-  <script src="js/app.js" defer></script>
-
-  <!-- 
-    v2 SCRIPT (INACTIVE)
-    Toggle this ON/OFF freely.
-    This position is safe for module scripts.
-    
-    To enable v2:
-    <script src="js/v2/app.js" type="module"></script>
-  -->
-
+  <!-- loader.js loads correct app.js/app.css -->
+	<script type="module" src="js/loader.js"></script>
+  
 </body>
 </html>
