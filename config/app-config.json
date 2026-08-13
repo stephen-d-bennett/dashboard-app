@@ -17,8 +17,9 @@
     "supabaseKey": "public-anon-key"
   },
 
+
   "debug": {
-    "logging": false,
-    "showVersionBanner": false
+    "logging": true,
+    "console": true
   }
 }

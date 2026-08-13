@@ -1,15 +1,54 @@
 // -------------------------------------------------------------
-// Load configuration
+// Load configuration (JSON import)
 // -------------------------------------------------------------
 import { appConfig } from "./config.js";
 
 
 // -------------------------------------------------------------
-// Version Toggle (active)
+// Debug Overlay (minimal)
 // -------------------------------------------------------------
-// appConfig.version = "v1" or "v2"
-// This controls which CSS + JS bundle loads.
+if (appConfig.debug?.console) {
+  const box = document.createElement("div");
+  box.id = "debug-box";
+  box.style.cssText = `
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 30%;
+    overflow-y: auto;
+    background: #0008;
+    color: #0f0;
+    font-size: 12px;
+    padding: 6px;
+    white-space: pre-wrap;
+    z-index: 9999;
+  `;
+  document.body.appendChild(box);
+}
+
+
+// -------------------------------------------------------------
+// Debug Logger Helper
+// -------------------------------------------------------------
+function debug(msg) {
+  if (appConfig.debug?.logging) {
+    console.log(msg);
+  }
+  const box = document.getElementById("debug-box");
+  if (box) box.textContent += msg + "\n";
+}
+
+debug("Loader initialized");
+debug("Config loaded");
+debug("Version: " + appConfig.version);
+
+
+// -------------------------------------------------------------
+// Version Toggle
+// -------------------------------------------------------------
 const version = appConfig.version;
+debug("Using version: " + version);
 
 
 // -------------------------------------------------------------
@@ -18,9 +57,11 @@ const version = appConfig.version;
 const css = document.getElementById("css-loader");
 
 if (version === "v1") {
-  css.href = "css/app.css";        // v1 stylesheet
+  css.href = "css/app.css";
+  debug("CSS loaded: css/app.css");
 } else {
-  css.href = "css/v2/v2.css";      // v2 stylesheet
+  css.href = "css/v2/v2.css";
+  debug("CSS loaded: css/v2/v2.css");
 }
 
 
@@ -28,77 +69,9 @@ if (version === "v1") {
 // JS Loader
 // -------------------------------------------------------------
 if (version === "v1") {
-  import("./app.js");              // v1 script
+  debug("Importing JS: app.js");
+  import("./app.js");
 } else {
-  import("./v2/app.js");           // v2 script (ES module)
+  debug("Importing JS: v2/app.js");
+  import("./v2/app.js");
 }
-
-
-// -------------------------------------------------------------
-// Future: Theme Defaults
-// -------------------------------------------------------------
-// if (appConfig.theme?.default) {
-//   const theme = appConfig.theme.default;
-//   const root = document.documentElement;
-//
-//   const themeColors = {
-//     original: "#253544",
-//     marian: "#1e3a8a",
-//     forest: "#2f6a4f",
-//     cardinal: "#8b1e2f"
-//   };
-//
-//   if (themeColors[theme]) {
-//     root.style.setProperty("--theme-color", themeColors[theme]);
-//   }
-// }
-
-
-// -------------------------------------------------------------
-// Future: Feature Flags
-// -------------------------------------------------------------
-// if (appConfig.features?.newSidebar) {
-//   import("./v2/sidebar.js");
-// }
-//
-// if (appConfig.features?.newSearch) {
-//   import("./v2/search.js");
-// }
-
-
-// -------------------------------------------------------------
-// Future: Environment Switching
-// -------------------------------------------------------------
-// if (appConfig.env) {
-//   const supabase = window.supabase.createClient(
-//     appConfig.env.supabaseUrl,
-//     appConfig.env.supabaseKey
-//   );
-// }
-
-
-// -------------------------------------------------------------
-// Future: Debug / Diagnostics
-// -------------------------------------------------------------
-// if (appConfig.debug?.logging) {
-//   console.log("Loader initialized");
-//   console.log("Version:", version);
-//   console.log("CSS loaded:", css.href);
-// }
-//
-// if (appConfig.debug?.showVersionBanner) {
-//   const banner = document.createElement("div");
-//   banner.textContent = `Running ${version}`;
-//   banner.style.cssText = `
-//     position: fixed;
-//     bottom: 10px;
-//     right: 10px;
-//     background: #0008;
-//     color: white;
-//     padding: 6px 10px;
-//     border-radius: 4px;
-//     font-size: 12px;
-//     z-index: 9999;
-//   `;
-//   document.body.appendChild(banner);
-// }
