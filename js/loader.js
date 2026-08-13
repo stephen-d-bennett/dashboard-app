@@ -1,4 +1,4 @@
-console.log("DEBUG: appConfig =", appConfig);
+alert("LOADER EXECUTED");
 
 // -------------------------------------------------------------
 // Load configuration (JSON import)
