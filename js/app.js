@@ -45,7 +45,7 @@ loadConfig().then(cfg => {
 
 async function loadConfig() {
   try {
-    const response = await fetch("/config/app-config.json");
+    const response = await fetch("config/app-config.json");
     if (!response.ok) throw new Error("Config file not found");
     return await response.json();
   } catch (err) {
