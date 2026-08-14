@@ -1,3 +1,18 @@
+window.onerror = function(msg, url, line, col, error) {
+  const box = document.createElement("div");
+  box.style.position = "fixed";
+  box.style.bottom = "0";
+  box.style.left = "0";
+  box.style.right = "0";
+  box.style.background = "rgba(200,0,0,0.9)";
+  box.style.color = "white";
+  box.style.padding = "10px";
+  box.style.fontSize = "14px";
+  box.style.zIndex = "9999";
+  box.textContent = msg;
+  document.body.appendChild(box);
+};
+
 // --------------------------------------------------------------
 // Load Cfg / Create Supabase Client / Init App (After DOM Loads)
 // --------------------------------------------------------------
