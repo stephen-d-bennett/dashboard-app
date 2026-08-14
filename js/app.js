@@ -1,3 +1,5 @@
+console.log("APP VERSION: v1.0.7");
+
 window.onerror = function(msg, url, line, col, error) {
   const box = document.createElement("div");
   box.style.position = "fixed";
@@ -125,8 +127,11 @@ function wireThemeButtons() {
 
 async function buildSidebar() {
   const categories = await loadTopics();
+  
+  window.onerror("categories: " + JSON.stringify(categories));
+  
   const container = document.getElementById('sidebar-categories');
-
+  
   container.innerHTML = ''; // only clear categories, NOT the settings button
 
   Object.keys(categories).forEach(cat => {
