@@ -1,3 +1,5 @@
+document.body.innerHTML += "<div style='padding:20px;background:red;color:white;'>DEBUG: JS RAN</div>";
+
 console.log("APP VERSION: v1.0.7");
 
 window.onerror = function(msg, url, line, col, error) {
