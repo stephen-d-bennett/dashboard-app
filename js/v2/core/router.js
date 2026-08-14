@@ -46,16 +46,16 @@ async function loadAndRenderTopic(slug) {
 }
 
 // -------------------------------------------------
-// URL MANAGEMENT
+// URL MANAGEMENT (PATHNAME ROUTING)
 // -------------------------------------------------
 
 function navigateTo(slug) {
-  history.pushState({ slug }, "", `?topic=${slug}`);
+  history.pushState({ slug }, "", `/${slug}`);
 }
 
 function getSlugFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("topic");
+  const path = window.location.pathname.replace("/", "");
+  return path || null;
 }
 
 // -------------------------------------------------

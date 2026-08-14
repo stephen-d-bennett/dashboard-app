@@ -1,5 +1,7 @@
 // /js/v2/core/fetch.js
 
+import { supabase } from "./supabase.js";
+
 export async function loadTopic(slug) {
   const { data, error } = await supabase
     .from("CatholicTopics")
