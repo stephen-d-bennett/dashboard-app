@@ -1,25 +1,21 @@
 {
   "version": "v1",
-
   "theme": {
     "default": "original",
     "allowCustom": true
   },
-
   "features": {
     "newSidebar": false,
     "newSearch": false
   },
-
   "env": {
-    "name": "dev",
-    "supabaseUrl": "https://xyz.supabase.co",
-    "supabaseKey": "public-anon-key"
-  },
-
-
+  "name": "dev",
+  "supabaseUrl": "https://yykqbqdosdvigghaguvd.supabase.co",
+  "supabaseKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5a3FicWRvc2R2aWdnaGFndXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMjg4MDIsImV4cCI6MjA5OTgwNDgwMn0.u-luZHqcc9aeHLGHIrWOPaK4vVXIHmwv3r3yZVvW7DU"
+	},
   "debug": {
     "logging": true,
     "console": true
   }
 }
+
