@@ -33,4 +33,5 @@ async function initAppV2() {
   initRouter();
 }
 
-initAppV2();
+document.addEventListener("DOMContentLoaded", initAppV2);
+
