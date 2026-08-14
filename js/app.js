@@ -1,49 +1,39 @@
-document.body.innerHTML += "<div style='padding:20px;background:red;color:white;'>DEBUG: JS RAN</div>";
-
-console.log("APP VERSION: v1.0.7");
-
-window.onerror = function(msg, url, line, col, error) {
-  const box = document.createElement("div");
-  box.style.position = "fixed";
-  box.style.bottom = "0";
-  box.style.left = "0";
-  box.style.right = "0";
-  box.style.background = "rgba(200,0,0,0.9)";
-  box.style.color = "white";
-  box.style.padding = "10px";
-  box.style.fontSize = "14px";
-  box.style.zIndex = "9999";
-  box.textContent = msg;
-  document.body.appendChild(box);
-};
-
-// --------------------------------------------------------------
-// Load Cfg / Create Supabase Client / Init App (After DOM Loads)
-// --------------------------------------------------------------
-
 let CONFIG = null;
+let SUPABASE_URL = null;
+let SUPABASE_KEY = null;
 let client = null;
 
-loadConfig().then(cfg => {
-  
-  CONFIG = cfg;
+// ---------------------------------------------------------
+// Main startup sequence
+// ---------------------------------------------------------
 
-  client = supabase.createClient(
-    CONFIG.env.supabaseUrl,
-    CONFIG.env.supabaseKey
-  );
-
-  document.addEventListener("DOMContentLoaded", () => {
-    buildSidebar();
-    wireModal();
-    wireThemeButtons();
-  });
-  
+document.addEventListener("DOMContentLoaded", () => {
+  startApp();
 });
 
-// ---------------------------------------------
+async function startApp() {
+  
+  // Load config (wait for it)
+  CONFIG = await loadConfig();
+  if (!CONFIG) {
+    console.error("CONFIG FAILED");
+    return;
+  }
+
+  // Initialize Supabase (wait for nothing, but sequential)
+  SUPABASE_URL = CONFIG.env.supabaseUrl;
+  SUPABASE_KEY = CONFIG.env.supabaseKey;
+  client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // Build UI (DOM is ready because we're inside DOMContentLoaded)
+  buildSidebar();
+  wireModal();
+  wireThemeButtons();
+}
+
+// ---------------------------------------------------------
 // Load Configuration From JSON File
-// ---------------------------------------------
+// ---------------------------------------------------------
 
 async function loadConfig() {
   try {
@@ -130,7 +120,9 @@ function wireThemeButtons() {
 async function buildSidebar() {
   const categories = await loadTopics();
   
-  window.onerror("categories: " + JSON.stringify(categories));
+  console.log("categories:", categories);
+
+  // window.onerror("categories: " + JSON.stringify(categories));
   
   const container = document.getElementById('sidebar-categories');
   
