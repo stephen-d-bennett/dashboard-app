@@ -1,3 +1,11 @@
+window.onerror = (msg, src, line, col, err) => {
+  alert("JS ERROR: " + msg);
+};
+
+console.log("TEST: v2/app.js loaded");
+alert("TEST: v2/app.js loaded");
+
+
 // /js/v2/app.js
 import { Debug } from "../shared/logger.js";
 
