@@ -14,7 +14,7 @@ async function loadApp() {
     console.log("Loaded v2");
   } else {
     loadCSS("css/v1/app.css");
-    await import("./app.js");
+    await import("./v1/app.js");
     console.log("Loaded v1");
   }
 }

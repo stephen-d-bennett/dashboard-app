@@ -1,5 +1,5 @@
 /* -------------------------------------------------
-   THEME ENGINE — Class-Based Dynamic Color System
+   THEME ENGINE -- Class-Based Dynamic Color System
    Generates tones from a base color and updates
    CSS variables across the entire site.
 --------------------------------------------------*/
