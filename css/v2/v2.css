@@ -29,3 +29,7 @@
 
 /* 6. Utilities (spacing helpers, visibility helpers, etc.) */
 @import "utilities.css";
+
+body {
+  background: pink !important;
+}
