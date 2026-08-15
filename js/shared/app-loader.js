@@ -1,3 +1,5 @@
+console.log("LOADER TOP: If you see this, printing works.");
+
 import { Debug } from "/js/shared/logger.js";
 
 async function loadConfig() {
