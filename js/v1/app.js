@@ -1,3 +1,5 @@
+import "./theme.js";
+
 let CONFIG = null;
 let SUPABASE_URL = null;
 let SUPABASE_KEY = null;
@@ -77,7 +79,7 @@ async function loadTopics() {
     	categories[cat].push(row);
     });
 	
-	});
+  });
 
   return categories;
 }
