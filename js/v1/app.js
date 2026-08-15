@@ -1,53 +1,67 @@
+// /js/v1/app.js
+
+import { Debug } from "../shared/logger.js";
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
 import { Theme } from "./theme.js";
-Theme.apply("#253544");
 
+// Apply theme immediately (safe -- does not touch DOM)
+Theme.apply("#253544");
+Debug.log("v1: theme applied");
+
+// Global state
 let CONFIG = null;
 let SUPABASE_URL = null;
 let SUPABASE_KEY = null;
 let client = null;
 
 // ---------------------------------------------------------
-// Main startup sequence
+// Main startup sequence (runs only after DOM is ready)
 // ---------------------------------------------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  Debug.log("v1: DOMContentLoaded fired");
+  Debug.log("v1: starting initialization");
 
-document.addEventListener("DOMContentLoaded", () => {
-  startApp();
-});
-
-async function startApp() {
-  
-  // Load config (wait for it)
+  // Load config
+  Debug.log("v1: loading config...");
   CONFIG = await loadConfig();
   if (!CONFIG) {
-    console.error("CONFIG FAILED");
+    Debug.log("v1: CONFIG FAILED");
     return;
   }
+  Debug.log("v1: config loaded");
 
-  // Initialize Supabase (wait for nothing, but sequential)
+  // Initialize Supabase
   SUPABASE_URL = CONFIG.env.supabaseUrl;
   SUPABASE_KEY = CONFIG.env.supabaseKey;
   client = createClient(SUPABASE_URL, SUPABASE_KEY);
+  Debug.log("v1: Supabase client initialized");
 
+  // Build UI (DOM is ready)
+  Debug.log("v1: building sidebar");
+  await buildSidebar();
+  Debug.log("v1: sidebar built");
 
-  // Build UI (DOM is ready because we're inside DOMContentLoaded)
-  buildSidebar();
+  Debug.log("v1: wiring modal");
   wireModal();
+  Debug.log("v1: modal wired");
+
+  Debug.log("v1: wiring theme buttons");
   wireThemeButtons();
-}
+  Debug.log("v1: theme buttons wired");
+
+  Debug.log("v1: initialization complete");
+});
 
 // ---------------------------------------------------------
 // Load Configuration From JSON File
 // ---------------------------------------------------------
-
 async function loadConfig() {
   try {
     const response = await fetch("config/app-config.json");
     if (!response.ok) throw new Error("Config file not found");
     return await response.json();
   } catch (err) {
-    console.error("Failed to load config:", err);
+    Debug.log("v1: loadConfig error: " + err.message);
     return null;
   }
 }
@@ -55,34 +69,22 @@ async function loadConfig() {
 // -----------------------------------------------
 // Load Topics from Supabase and Group By Category
 // -----------------------------------------------
-
 async function loadTopics() {
-  
-  // Fetch all Data for all Catholic-Topics rows
   const { data, error } = await client.from('Catholic-Topics').select('*');
 
-  // Check for Error Fetching Data
   if (error) {
-    console.error(error);
-    return;
+    Debug.log("v1: loadTopics error: " + error.message);
+    return {};
   }
-  
-  // Group Topics by Categories Array
-	const categories = {};
+
+  const categories = {};
 
   data.forEach(row => {
-  	
-  	// Ensure categories exists and is an array
-  	const cats = Array.isArray(row.categories) ? row.categories : [];
-  	
-  	// Put each Topic in Each Category it is assigned
-  	cats.forEach(cat => {
-    	if (!categories[cat]) {
-      		categories[cat] = [];
-    	}
-    	categories[cat].push(row);
+    const cats = Array.isArray(row.categories) ? row.categories : [];
+    cats.forEach(cat => {
+      if (!categories[cat]) categories[cat] = [];
+      categories[cat].push(row);
     });
-	
   });
 
   return categories;
@@ -91,7 +93,6 @@ async function loadTopics() {
 // ---------------------------------------------
 // Wire Modal Buttons
 // ---------------------------------------------
-
 function wireModal() {
   document.getElementById("sidebar-settings").onclick = () => {
     document.getElementById("preferences-modal").classList.remove("hidden");
@@ -105,12 +106,9 @@ function wireModal() {
 // ---------------------------------------------
 // Wire Theme Buttons
 // ---------------------------------------------
-
 function wireThemeButtons() {
   document.querySelectorAll(".preset").forEach(btn => {
-    btn.onclick = () => {
-      Theme.apply(btn.dataset.color);
-    };
+    btn.onclick = () => Theme.apply(btn.dataset.color);
   });
 
   document.getElementById("apply-custom").onclick = () => {
@@ -122,17 +120,12 @@ function wireThemeButtons() {
 // ---------------------------------------------
 // Build the Sidebar
 // ---------------------------------------------
-
 async function buildSidebar() {
   const categories = await loadTopics();
-  
-  console.log("categories:", categories);
+  Debug.log("v1: categories loaded: " + Object.keys(categories).length);
 
-  // window.onerror("categories: " + JSON.stringify(categories));
-  
   const container = document.getElementById('sidebar-categories');
-  
-  container.innerHTML = ''; // only clear categories, NOT the settings button
+  container.innerHTML = '';
 
   Object.keys(categories).forEach(cat => {
     const header = document.createElement('div');
@@ -157,7 +150,6 @@ async function buildSidebar() {
     });
 
     header.addEventListener('click', () => {
-      
       document.querySelectorAll('.category-items').forEach(section => {
         if (section !== items) {
           section.classList.remove('expanded');
@@ -167,12 +159,10 @@ async function buildSidebar() {
 
       const isExpanded = items.classList.toggle('expanded');
       header.classList.toggle('expanded', isExpanded);
-      
     });
 
     container.appendChild(header);
     container.appendChild(items);
-    
   });
 
   document.getElementById("content-panel").innerHTML = "<h1>Select a topic</h1>";
@@ -181,25 +171,21 @@ async function buildSidebar() {
 // ---------------------------------------------
 // Use Renderer to Display Topic
 // ---------------------------------------------
-
 function showContent(item) {
-  // Use Renderer to Display Topic
   renderArticle(item);
 }
 
 // ---------------------------------------------
 // Render Categories
 // ---------------------------------------------
-
 function renderCategories(data) {
-    
   const categories = [
-  	...new Set(
-    	data.flatMap(item => 
-    		Array.isArray(item.categories) ? item.categories : []
-    	)
-		)
-	];
+    ...new Set(
+      data.flatMap(item =>
+        Array.isArray(item.categories) ? item.categories : []
+      )
+    )
+  ];
 
   const container = document.getElementById("category-list");
   container.innerHTML = "";
@@ -211,15 +197,12 @@ function renderCategories(data) {
     div.onclick = () => filterByCategory(cat, data);
     container.appendChild(div);
   });
-  
 }
 
 // ---------------------------------------------
 // Render Topic List
 // ---------------------------------------------
-
 function renderTopicList(data) {
-  
   const container = document.getElementById("topic-list");
   container.innerHTML = "";
 
@@ -235,12 +218,11 @@ function renderTopicList(data) {
 // ---------------------------------------------
 // Filter by Category
 // ---------------------------------------------
-
 function filterByCategory(category, data) {
-	const filtered = data.filter(item =>
-  	Array.isArray(item.categories) && item.categories.includes(category)
-	);
-  
+  const filtered = data.filter(item =>
+    Array.isArray(item.categories) && item.categories.includes(category)
+  );
+
   renderTopicList(filtered);
   document.getElementById("article").innerHTML = "";
 }
@@ -248,15 +230,11 @@ function filterByCategory(category, data) {
 // ---------------------------------------------
 // Render Article (Original Renderer)
 // ---------------------------------------------
-
 function renderArticle(item) {
   const container = document.getElementById("content-panel");
   container.innerHTML = `<h1>${item.title}</h1>`;
 
-  // Original JSON structure: item.content.content
   item.content.content.forEach(block => {
-    
-    // Render Text Block
     if (block.type === "text_block") {
       block.content.forEach(text => {
         const p = document.createElement("p");
@@ -266,14 +244,12 @@ function renderArticle(item) {
       });
     }
 
-    // Render Level 2 Titles
     if (block.level === 2 && block.title) {
       const h2 = document.createElement("h2");
       h2.textContent = block.title;
       container.appendChild(h2);
     }
 
-    // Render Numbered Lists
     if (block.type === "numbered_list") {
       const ol = document.createElement("ol");
       block.content.forEach(li => {
@@ -284,7 +260,6 @@ function renderArticle(item) {
       container.appendChild(ol);
     }
 
-    // Render Bulleted Lists
     if (block.type === "bulleted_list") {
       const ul = document.createElement("ul");
       block.content.forEach(li => {
@@ -295,7 +270,6 @@ function renderArticle(item) {
       container.appendChild(ul);
     }
 
-    // Render Dictionaries
     if (block.type === "dictionary") {
       const dl = document.createElement("dl");
       dl.className = "dictionary-block";
@@ -310,12 +284,10 @@ function renderArticle(item) {
       container.appendChild(dl);
     }
 
-   // Render Tables
-   if (block.type === "table") {
+    if (block.type === "table") {
       const table = document.createElement("table");
       table.className = "table-block";
 
-      // Render Table Header if Present
       if (block.header && Array.isArray(block.header)) {
         const headerRow = document.createElement("tr");
         block.header.forEach(text => {
@@ -326,7 +298,6 @@ function renderArticle(item) {
         table.appendChild(headerRow);
       }
 
-      // Render Table Rows
       block.content.forEach(row => {
         const tr = document.createElement("tr");
         row.forEach(cell => {
@@ -338,7 +309,6 @@ function renderArticle(item) {
       });
 
       container.appendChild(table);
-    } 
+    }
   });
 }
-
