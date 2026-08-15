@@ -1,8 +1,4 @@
-import { Debug } from "/shared/logger.js";
-document.addEventListener("DOMContentLoaded", () => {
-  Debug.log("loader: started");
-  Debug.log("loader: current file = " + import.meta.url);
-});
+import { Debug } from "/js/shared/logger.js";
 
 async function loadConfig() {
   const res = await fetch("/config/app-config.json", { cache: "no-store" });
@@ -10,18 +6,22 @@ async function loadConfig() {
 }
 
 (async () => {
+  Debug.log("loader: started");
+
   const config = await loadConfig();
-  
   const version = config.version;
+
   Debug.log("loader: version = " + version);
 
+  // Load CSS for the version
   const css = document.createElement("link");
   css.rel = "stylesheet";
   css.href = `/css/${version}/app.css`;
   document.head.appendChild(css);
 
-  Debug.log("loader: importing /js/" + version + "/app.js");
-  await import(`/js/${version}/app.js`);
-  Debug.log("loader: module loaded");
+  // ⭐ Architecturally correct dynamic import
+  Debug.log("loader: importing ./" + version + "/app.js");
+  await import(`./${version}/app.js`);
 
+  Debug.log("loader: module loaded");
 })();
