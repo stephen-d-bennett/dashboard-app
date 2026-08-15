@@ -1,6 +1,5 @@
 // /js/v2/app.js
 // Main initializer for the v2 modular architecture
-
 import { loadAllTopics } from "./core/fetch.js";
 import { initRouter } from "./core/router.js";
 import { initSidebar } from "./components/sidebar.js";

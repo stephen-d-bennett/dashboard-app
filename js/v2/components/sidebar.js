@@ -8,7 +8,7 @@ import { qs, createEl } from "../utils/dom.js";
 // -------------------------------------------------
 
 export async function initSidebar() {
-  const sidebar = qs("#sidebar");
+	const sidebar = qs("#sidebar-categories");
   if (!sidebar) {
     console.warn("Sidebar element not found");
     return;
