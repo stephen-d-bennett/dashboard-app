@@ -1,22 +1,16 @@
-import config from "../config/app-config.json" assert { type: "json" };
-
-function loadCSS(path) {
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = path;
-  document.head.appendChild(link);
+async function loadConfig() {
+  const res = await fetch("/config/app-config.json", { cache: "no-store" });
+  return await res.json();
 }
 
-async function loadApp() {
-  if (config.version === "v2") {
-    loadCSS("css/v2/v2.css");
-    await import("./v2/app.js");
-    console.log("Loaded v2");
-  } else {
-    loadCSS("css/v1/app.css");
-    await import("./v1/app.js");
-    console.log("Loaded v1");
-  }
-}
+(async () => {
+  const config = await loadConfig();
+  const version = config.version;
 
-loadApp();
+  const css = document.createElement("link");
+  css.rel = "stylesheet";
+  css.href = `/css/${version}/app.css`;
+  document.head.appendChild(css);
+
+  await import(`/js/${version}/app.js`);
+})();

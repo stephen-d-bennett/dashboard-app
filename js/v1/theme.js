@@ -1,15 +1,8 @@
-/* -------------------------------------------------
-   THEME ENGINE -- Class-Based Dynamic Color System
-   Generates tones from a base color and updates
-   CSS variables across the entire site.
---------------------------------------------------*/
-
 class ThemeEngine {
   constructor() {
     this.root = document.documentElement;
   }
 
-  /* PUBLIC: Apply a new base color */
   apply(baseHex) {
     const { h, s, l } = this.hexToHSL(baseHex);
 
@@ -25,19 +18,16 @@ class ThemeEngine {
     this.applyVariables(theme);
   }
 
-  /* INTERNAL: Update CSS variables */
   applyVariables(themeObj) {
     for (const key in themeObj) {
       this.root.style.setProperty(key, themeObj[key]);
     }
   }
 
-  /* INTERNAL: Clamp HSL values */
   clamp(value) {
     return Math.max(0, Math.min(100, value));
   }
 
-  /* INTERNAL: HEX → HSL */
   hexToHSL(H) {
     let r = 0, g = 0, b = 0;
 
@@ -75,7 +65,6 @@ class ThemeEngine {
     return { h, s: s * 100, l: l * 100 };
   }
 
-  /* INTERNAL: HSL → HEX */
   hslToHex(h, s, l) {
     s /= 100;
     l /= 100;
@@ -93,7 +82,6 @@ class ThemeEngine {
     );
   }
 
-  /* OPTIONAL: Liturgical presets */
   presets = {
     marianBlue: "#1f3b73",
     liturgicalPurple: "#4b2e83",
@@ -102,9 +90,4 @@ class ThemeEngine {
   };
 }
 
-/* -------------------------------------------------
-   Example usage:
---------------------------------------------------*/
-
-const Theme = new ThemeEngine();
-Theme.apply("#253544"); // your current brand color
+export const Theme = new ThemeEngine();

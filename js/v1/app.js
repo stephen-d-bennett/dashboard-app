@@ -1,5 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-import "./theme.js";
+
+import { Theme } from "./theme.js";
+Theme.apply("#253544");
 
 let CONFIG = null;
 let SUPABASE_URL = null;

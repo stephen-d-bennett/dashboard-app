@@ -1,4 +1,7 @@
 // /js/v2/app.js
+import { Theme } from "./theme.js";
+Theme.apply("#1e3a8a"); // or whatever v2 default is
+
 // Main initializer for the v2 modular architecture
 import { loadAllTopics } from "./core/fetch.js";
 import { initRouter } from "./core/router.js";
@@ -34,3 +37,4 @@ async function initAppV2() {
 
 document.addEventListener("DOMContentLoaded", initAppV2);
 
+export const Theme = new ThemeEngine();
