@@ -2,7 +2,7 @@
 import { Theme } from "./theme.js";
 Theme.apply("#1e3a8a"); // v2 default
 
-// Main initializer for the v2 modular architecture
+// All imports commented out for isolation testing
 // import { loadAllTopics } from "./core/fetch.js";
 // import { initRouter } from "./core/router.js";
 // import { initSidebar } from "./components/sidebar.js";
@@ -11,20 +11,19 @@ Theme.apply("#1e3a8a"); // v2 default
 // import { initSearch } from "./core/search.js";
 
 async function initAppV2() {
-  console.log("v2: initializing…");
+  // Everything below removed because these functions are undefined
+  // when imports are commented out.
 
-  const topics = await loadAllTopics();
-  console.log(`v2: loaded ${topics.length} topics from Supabase`);
+  // const topics = await loadAllTopics();
+  // initDictionary();
+  // initSearch(topics);
 
-  initDictionary();
-  initSearch(topics);
+  // const initialSlug = window.location.pathname.replace("/", "") || "theological-virtues";
+  // history.replaceState({ slug: initialSlug }, "", `/${initialSlug}`);
 
-  const initialSlug = window.location.pathname.replace("/", "") || "theological-virtues";
-  history.replaceState({ slug: initialSlug }, "", `/${initialSlug}`);
-
-  initSidebar();
-  initTermPopup();
-  initRouter();
+  // initSidebar();
+  // initTermPopup();
+  // initRouter();
 }
 
 document.addEventListener("DOMContentLoaded", initAppV2);
