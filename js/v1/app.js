@@ -1,3 +1,4 @@
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 import "./theme.js";
 
 let CONFIG = null;
@@ -25,7 +26,8 @@ async function startApp() {
   // Initialize Supabase (wait for nothing, but sequential)
   SUPABASE_URL = CONFIG.env.supabaseUrl;
   SUPABASE_KEY = CONFIG.env.supabaseKey;
-  client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  client = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 
   // Build UI (DOM is ready because we're inside DOMContentLoaded)
   buildSidebar();
