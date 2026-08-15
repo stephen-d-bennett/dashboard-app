@@ -1,7 +1,8 @@
 import { Debug } from "/shared/logger.js";
-
-Debug.log("loader: started");
-Debug.log("loader: current file = " + import.meta.url);
+document.addEventListener("DOMContentLoaded", () => {
+  Debug.log("loader: started");
+  Debug.log("loader: current file = " + import.meta.url);
+});
 
 async function loadConfig() {
   const res = await fetch("/config/app-config.json", { cache: "no-store" });
