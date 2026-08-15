@@ -1,6 +1,6 @@
 // /js/v2/app.js
 import { Theme } from "./theme.js";
-Theme.apply("#1e3a8a"); // or whatever v2 default is
+Theme.apply("#1e3a8a"); // v2 default
 
 // Main initializer for the v2 modular architecture
 import { loadAllTopics } from "./core/fetch.js";
@@ -13,28 +13,18 @@ import { initSearch } from "./core/search.js";
 async function initAppV2() {
   console.log("v2: initializing…");
 
-  // Load all topics from Supabase
   const topics = await loadAllTopics();
   console.log(`v2: loaded ${topics.length} topics from Supabase`);
 
-  // Initialize dictionary (if dictionary terms come from Supabase)
   initDictionary();
-
-  // Build search index
   initSearch(topics);
 
-  // INITIAL LOAD -- set correct URL without adding to history
   const initialSlug = window.location.pathname.replace("/", "") || "theological-virtues";
   history.replaceState({ slug: initialSlug }, "", `/${initialSlug}`);
 
-  // Initialize UI components
   initSidebar();
   initTermPopup();
-
-  // Initialize router (loads initial topic)
   initRouter();
 }
 
 document.addEventListener("DOMContentLoaded", initAppV2);
-
-export const Theme = new ThemeEngine();
