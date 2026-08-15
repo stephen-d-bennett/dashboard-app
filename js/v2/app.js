@@ -1,6 +1,6 @@
 // /js/v2/app.js
-import { Theme } from "./theme.js";
-Theme.apply("#1e3a8a"); // v2 default
+// import { Theme } from "./theme.js";
+// Theme.apply("#1e3a8a"); // v2 default
 
 // All imports commented out for isolation testing
 // import { loadAllTopics } from "./core/fetch.js";
@@ -10,7 +10,7 @@ Theme.apply("#1e3a8a"); // v2 default
 // import { initDictionary } from "./core/dictionary.js";
 // import { initSearch } from "./core/search.js";
 
-async function initAppV2() {
+// async function initAppV2() {
   // Everything below removed because these functions are undefined
   // when imports are commented out.
 
@@ -24,6 +24,19 @@ async function initAppV2() {
   // initSidebar();
   // initTermPopup();
   // initRouter();
+// }
+
+document.addEventListener("DOMContentLoaded", initAppV2);
+
+// /js/v2/app.js
+import { Theme } from "./theme.js";
+Theme.apply("#1e3a8a"); // v2 default
+
+// TEMPORARY: v2 is under construction.
+// Do NOT call anything else yet.
+
+function initAppV2() {
+  // empty on purpose
 }
 
 document.addEventListener("DOMContentLoaded", initAppV2);
