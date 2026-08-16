@@ -1,41 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HUD Test</title>
+  <title>Dashboard App</title>
 </head>
 <body>
-  <h1>HUD Test</h1>
 
-  <script>
-    // Create HUD
-    const hud = document.createElement("pre");
-    hud.id = "debug-hud";
-    hud.style.cssText = `
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.85);
-      color: #0f0;
-      padding: 10px;
-      font-size: 14px;
-      z-index: 2147483647;
-      max-height: 40vh;
-      overflow-y: auto;
-      white-space: pre-wrap;
-    `;
-    document.body.appendChild(hud);
+  <div id="app"></div>
 
-    // Log to HUD
-    function log(msg) {
-      hud.textContent += msg + "\n";
-    }
+  <script type="module" src="/js/shared/app-loader.js"></script>
 
-    // Write test messages
-    log("HUD is working.");
-    log("This is running on iPad Safari.");
-    log("This proves the HUD system works.");
-  </script>
 </body>
 </html>
