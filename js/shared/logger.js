@@ -26,6 +26,8 @@ export function ensureHUD() {
 
 // Write to HUD + console
 export function log(msg) {
+  // make sure HUD exists before writing
+  ensureHUD();
   const hud = document.getElementById("debug-hud");
   hud.textContent += msg + "\n";
   console.log(msg);
