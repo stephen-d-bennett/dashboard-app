@@ -1,6 +1,6 @@
 // FILE: /js/shared/app-loader.js
 
-import { Debug } from "/js/shared/logger.js";
+import { Debug } from "./logger.js";
 
 async function loadConfig() {
   const res = await fetch("/config/app-config.json", { cache: "no-store" });
