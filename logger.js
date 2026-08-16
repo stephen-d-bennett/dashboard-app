@@ -1,3 +1,5 @@
+console.log("logger.js is running");
+
 let hud = null;
 
 export function log(msg) {
@@ -6,16 +8,13 @@ export function log(msg) {
 }
 
 function ensureHUD() {
-  // If HUD already exists, we're done
   if (hud) return;
 
-  // If <body> doesn't exist yet, wait for DOMContentLoaded
   if (!document.body) {
     window.addEventListener("DOMContentLoaded", ensureHUD);
     return;
   }
 
-  // Create HUD once DOM is ready
   hud = document.createElement("pre");
   hud.id = "debug-hud";
   hud.style.cssText = `
