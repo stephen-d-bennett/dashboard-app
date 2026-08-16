@@ -14,7 +14,7 @@ export async function start() {
   const config = await loadConfig();
   const version = config.version;
 
-  Debug.log("loader: version = " + version);
+  log("loader: version = " + version);
 
   // Load CSS for the version
   const css = document.createElement("link");
@@ -22,13 +22,13 @@ export async function start() {
   css.href = `/css/${version}/app.css`;
   document.head.appendChild(css);
 
-  Debug.log("loader: importing ../" + version + "/app.js");
+  log("loader: importing ../" + version + "/app.js");
   const module = await import(`../${version}/app.js`);
 
-  Debug.log("loader: module loaded");
+  log("loader: module loaded");
 
   if (typeof module.init === "function") {
-    Debug.log("loader: calling init()");
+    log("loader: calling init()");
     await module.init();
   }
 }
