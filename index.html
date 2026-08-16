@@ -47,21 +47,7 @@
 
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
-    
-    <!-- Classic script boots ES module AFTER DOM is ready -->
-    <script>
-      window.addEventListener("DOMContentLoaded", async () => {
-        const module = await import("/js/shared/app-loader.js");
-        module.start();
-      });
-    </script>
-
-    <!-- Debug download button (assumes Debug is attached to window in your logger) -->
-    <button onclick="Debug.download()" 
-      style="position: fixed; bottom: 32%; right: 10px; z-index: 10000;">
-      Download Logs
-    </button>
-    
+            
     <!-- On-screen debug console (HUD) -->
     <div id="debug-console" 
       style="position: fixed;
@@ -86,4 +72,5 @@
     </script>
 
   </body>
+  
 </html>
