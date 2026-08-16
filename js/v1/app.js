@@ -5,14 +5,14 @@
 
 // TEMPORARY DIAGNOSTIC
 
-console.log("v1/app.js loaded");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("v1/app.js loaded");
 
-document.getElementById("app").innerHTML = `
-  <h1 style="color: lime;">V1 Loaded</h1>
-  <p>This proves v1/app.js is executing.</p>
-`;
-
-
+  document.getElementById("app").innerHTML = `
+    <h1 style="color: lime;">V1 Loaded</h1>
+    <p>This proves v1/app.js is executing.</p>
+  `;
+});
 
 
 
