@@ -1,15 +1,5 @@
-window.onerror = (msg, src, line, col, err) => {
-  alert("JS ERROR: " + msg);
-};
-
-console.log("TEST: v2/app.js loaded");
-alert("TEST: v2/app.js loaded");
-
-
-// /js/v2/app.js
-import { Debug } from "../shared/logger.js";
-
-Debug.log("v2: app.js module loaded (but DOM not ready yet)");
+import { Debug } from "/js/shared/logger.js";
+Debug.log("V2 STARTED");
 
 import { Theme } from "./theme.js";
 import { loadAllTopics } from "./core/fetch.js";
