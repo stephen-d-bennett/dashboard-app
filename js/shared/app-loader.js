@@ -1,6 +1,6 @@
 // FILE: /js/shared/app-loader.js
 
-import { Debug } from "/js/shared/logger.js";
+import { ensureHUD, log } from "/js/shared/logger.js";
 
 async function loadConfig() {
   const res = await fetch("/config/app-config.json", { cache: "no-store" });
@@ -8,8 +8,8 @@ async function loadConfig() {
 }
 
 export async function start() {
-  Debug.ensureScreen();   // ← iOS fix
-  Debug.log("loader: started");
+  ensureHUD();
+  log("loader: started");
 
   const config = await loadConfig();
   const version = config.version;
