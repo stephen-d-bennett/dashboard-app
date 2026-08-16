@@ -1,13 +1,25 @@
-console.log("app-loader.js is running");
-
 import { log } from "./logger.js";
-import { start } from "./v2/app.js";
 
 log("app-loader.js loaded.");
-log("Calling init()...");
 
-export function init() {
+async function loadConfig() {
+  log("Loading config...");
+  const res = await fetch("./app-config.json", { cache: "no-store" });
+  const json = await res.json();
+  log("Config loaded: version = " + json.version);
+  return json;
+}
+
+export async function init() {
   log("init() inside app-loader.js ran successfully.");
-  log("Calling v2/app.js start()...");
-  start();
+
+  const config = await loadConfig();
+  const version = config.version;
+
+  log("Importing version: " + version);
+
+  const module = await import(`./${version}/app.js`);
+
+  log("Version module loaded. Calling start()...");
+  module.start();
 }
