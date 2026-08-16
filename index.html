@@ -77,5 +77,13 @@
         white-space: pre-wrap;
         z-index: 9999;"></div>
 
+    <script>
+      window.addEventListener("DOMContentLoaded", async () => {
+        alert("BOOT SCRIPT RAN");   // ← temporary test
+        const module = await import("/js/shared/app-loader.js");
+        module.start();
+      });
+    </script>
+
   </body>
 </html>
