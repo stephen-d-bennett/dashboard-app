@@ -1,10 +1,4 @@
-/*
-document.body.insertAdjacentHTML(
-  "beforeend",
-  "<div style='position:fixed;top:0;left:0;z-index:99999;background:red;color:white;padding:10px;font-size:20px;'>LOADER RAN</div>"
-);
-
-console.log("LOADER TOP: If you see this, printing works.");
+// FILE: /js/shared/app-loader.js
 
 import { Debug } from "/js/shared/logger.js";
 
@@ -27,13 +21,9 @@ async function loadConfig() {
   css.href = `/css/${version}/app.css`;
   document.head.appendChild(css);
 
-  // Architecturally correct dynamic import
-  Debug.log("loader: importing ./" + version + "/app.js");
-  await import(`./${version}/app.js`);
+  // Correct import path for loader located at /js/shared
+  Debug.log("loader: importing ../" + version + "/app.js");
+  await import(`../${version}/app.js`);
 
   Debug.log("loader: module loaded");
 })();
-*/
-
-console.log("LOADER RAN");
-document.body.style.border = "20px solid red";
