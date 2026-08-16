@@ -1,3 +1,8 @@
-hud-test.html
-logger.js
-app-loader.js
+import { log } from "./logger.js";
+
+log("app-loader.js loaded.");
+log("Calling init()...");
+
+export function init() {
+  log("init() inside app-loader.js ran successfully.");
+}

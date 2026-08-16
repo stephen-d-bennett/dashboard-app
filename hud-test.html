@@ -2,18 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>HUD Logger Test</title>
+  <title>HUD Loader Test</title>
 </head>
 <body>
-  <h1>HUD Logger Test</h1>
+  <h1>HUD Loader Test</h1>
 
-  <!-- Load logger.js from the same directory -->
-  <script src="./logger.js"></script>
-
-  <script>
-    // Call the logger from the HTML page
-    log("HUD + logger.js both working.");
-    log("This is the next baby step.");
+  <script type="module">
+    import { init } from "./app-loader.js";
+    init();
   </script>
 </body>
 </html>
