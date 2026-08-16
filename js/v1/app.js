@@ -1,5 +1,25 @@
 // /js/v1/app.js
 
+
+
+
+// TEMPORARY DIAGNOSTIC
+
+console.log("v1/app.js loaded");
+
+document.getElementById("app").innerHTML = `
+  <h1 style="color: lime;">V1 Loaded</h1>
+  <p>This proves v1/app.js is executing.</p>
+`;
+
+
+
+
+
+
+
+
+/*
 import { Debug } from "../shared/logger.js";
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 import { Theme } from "./theme.js";
@@ -312,3 +332,4 @@ function renderArticle(item) {
     }
   });
 }
+*/
