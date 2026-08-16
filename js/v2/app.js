@@ -1,8 +1,6 @@
-alert("V2 APP.JS RAN");
+// /js/v2/app.js
 
 import { Debug } from "/js/shared/logger.js";
-Debug.log("V2 STARTED");
-
 import { Theme } from "./theme.js";
 import { loadAllTopics } from "./core/fetch.js";
 import { initRouter } from "./core/router.js";
@@ -11,10 +9,9 @@ import { initTermPopup } from "./components/term-popup.js";
 import { initDictionary } from "./core/dictionary.js";
 import { initSearch } from "./core/search.js";
 
-// Run ONLY after DOM exists
-document.addEventListener("DOMContentLoaded", async () => {
-
-  Debug.log("v2: DOMContentLoaded fired");
+export async function init() {
+  alert("V2 APP.JS RAN");
+  Debug.log("V2 STARTED");
   Debug.log("v2: app.js starting initialization");
 
   // Apply theme
@@ -57,4 +54,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   Debug.log("v2: router initialized");
 
   Debug.log("v2: initialization complete");
-});
+}

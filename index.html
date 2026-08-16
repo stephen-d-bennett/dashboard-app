@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
   
   <head>
@@ -52,8 +51,14 @@
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
     
-    <!-- Load correct version automatically -->
-    <script type="module" src="/js/shared/app-loader.js"></script>
+    <!-- Load correct version automatically (REPLACED) -->
+    <script type="module">
+      import { start } from "/js/shared/app-loader.js";
+
+      document.readyState === "loading"
+        ? document.addEventListener("DOMContentLoaded", start)
+        : start();
+    </script>
 
     <button onclick="Debug.download()" 
       style="position: fixed; bottom: 32%; right: 10px; z-index: 10000;">

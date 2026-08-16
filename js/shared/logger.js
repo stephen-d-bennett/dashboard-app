@@ -6,7 +6,7 @@ export class Logger {
     this.key = "debug-log";
     this.screenEl = null;
   }
-
+  
   ensureScreen() {
     let el = document.getElementById("debug-console");
     if (!el) {
@@ -50,16 +50,3 @@ export class Logger {
 }
 
 export const Debug = new Logger();
-
-// DOM READY FIX FOR iOS SAFARI
-document.addEventListener("DOMContentLoaded", () => {
-  Debug.ensureScreen();
-  const el = document.getElementById("debug-console");
-  if (el) {
-    el.style.display = "block";
-    el.style.opacity = "1";
-    el.style.visibility = "visible";
-    el.style.zIndex = "999999";
-    el.style.pointerEvents = "auto";
-  }
-});

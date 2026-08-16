@@ -7,7 +7,7 @@ async function loadConfig() {
   return await res.json();
 }
 
-(async () => {
+export async function start() {
   Debug.log("loader: started");
 
   const config = await loadConfig();
@@ -26,4 +26,4 @@ async function loadConfig() {
   await import(`../${version}/app.js`);
 
   Debug.log("loader: module loaded");
-})();
+}
