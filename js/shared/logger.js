@@ -14,7 +14,7 @@ export class Logger {
       el = document.createElement("div");
       el.id = "debug-console";
       el.style.position = "fixed";
-      el.style.bottom = "0";
+      el.style.top = "0";        // <-- FIXED
       el.style.left = "0";
       el.style.width = "100%";
       el.style.maxHeight = "30%";
@@ -24,7 +24,7 @@ export class Logger {
       el.style.fontSize = "12px";
       el.style.padding = "6px";
       el.style.whiteSpace = "pre-wrap";
-      el.style.zIndex = "9999";
+      el.style.zIndex = "9999";      
       document.body.appendChild(el);
     }
     this.screenEl = el;
@@ -33,7 +33,6 @@ export class Logger {
   write(message) {
     const timestamp = new Date().toISOString();
     const entry = `${timestamp} - ${message}\n`;
-
     const existing = localStorage.getItem(this.key) || "";
     localStorage.setItem(this.key, existing + entry);
   }
@@ -48,12 +47,10 @@ export class Logger {
     const data = localStorage.getItem(this.key) || "";
     const blob = new Blob([data], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
-
     const a = document.createElement("a");
     a.href = url;
     a.download = "debug-log.txt";
     a.click();
-
     URL.revokeObjectURL(url);
   }
 
