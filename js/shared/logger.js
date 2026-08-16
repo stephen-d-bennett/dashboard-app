@@ -1,3 +1,5 @@
+console.log("LOGGER FILE EXECUTED");
+
 // FILE: /js/shared/logger.js
 
 // Create HUD if missing
