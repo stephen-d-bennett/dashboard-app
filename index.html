@@ -1,75 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-  
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HUD Test</title>
+</head>
+<body>
+  <h1>HUD Test</h1>
 
-    <!-- Cache control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+  <script>
+    // Create HUD
+    const hud = document.createElement("pre");
+    hud.id = "debug-hud";
+    hud.style.cssText = `
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.85);
+      color: #0f0;
+      padding: 10px;
+      font-size: 14px;
+      z-index: 2147483647;
+      max-height: 40vh;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    `;
+    document.body.appendChild(hud);
 
-    <!-- Loader will insert correct CSS -->
-    <link id="css-loader" rel="stylesheet" href="">
-  </head>
-  
-  <body>
-    <!-- Layout -->
-    <div id="layout">
-      <div id="sidebar">
-        <div id="sidebar-categories"></div>
-        <div id="sidebar-settings">⚙️ Preferences</div>
-      </div>
-      
-      <div id="main">
-        <div id="content-panel"></div>
-      </div>
-    </div>
-    
-    <!-- Preferences Modal -->
-    <div id="preferences-modal" class="modal hidden">
-      <div class="modal-content">
-        <h2>Preferences</h2>
-        <h3>Color Theme</h3>
-        <div class="preset-colors">
-          <button class="preset" data-color="#8b1e2f">Cardinal Red</button>
-          <button class="preset" data-color="#1e3a8a">Marian Blue</button>
-          <button class="preset" data-color="#2f6a4f">Forest Green</button>
-          <button class="preset" data-color="#253544">Original</button>
-        </div>
-        <h3>Custom Color</h3>
-        <input id="custom-color" type="text" placeholder="#253544">
-        <button id="apply-custom">Apply</button>
-        <button id="close-modal">Close</button>
-      </div>
-    </div>
+    // Log to HUD
+    function log(msg) {
+      hud.textContent += msg + "\n";
+    }
 
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
-            
-    <!-- On-screen debug console (HUD) -->
-    <div id="debug-hud" 
-      style="position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        max-height: 30%;
-        overflow-y: auto;
-        background: #0008;
-        color: #0f0;
-        font-size: 12px;
-        padding: 6px;
-        white-space: pre-wrap;
-        z-index: 9999;"></div>
-
-    <script>
-      window.addEventListener("DOMContentLoaded", async () => {
-      const module = await import("/js/shared/app-loader.js");
-      module.start();
-    });
-    </script>
-
-  </body>
-  
+    // Write test messages
+    log("HUD is working.");
+    log("This is running on iPad Safari.");
+    log("This proves the HUD system works.");
+  </script>
+</body>
 </html>
