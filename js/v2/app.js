@@ -1,3 +1,5 @@
+alert("V2 APP.JS RAN");
+
 import { Debug } from "/js/shared/logger.js";
 Debug.log("V2 STARTED");
 
