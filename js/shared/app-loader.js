@@ -8,6 +8,7 @@ async function loadConfig() {
 }
 
 export async function start() {
+  Debug.ensureScreen();   // ← iOS fix
   Debug.log("loader: started");
 
   const config = await loadConfig();
@@ -21,9 +22,15 @@ export async function start() {
   css.href = `/css/${version}/app.css`;
   document.head.appendChild(css);
 
-  // Correct import path for loader located at /js/shared
+  // Import the versioned app.js
   Debug.log("loader: importing ../" + version + "/app.js");
-  await import(`../${version}/app.js`);
+  const module = await import(`../${version}/app.js`);
 
   Debug.log("loader: module loaded");
+
+  // Call init() if it exists
+  if (typeof module.init === "function") {
+    Debug.log("loader: calling init()");
+    await module.init();
+  }
 }
