@@ -2,11 +2,18 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>HUD External File Test</title>
+  <title>HUD Logger Test</title>
 </head>
 <body>
-  <h1>HUD External JS Test</h1>
+  <h1>HUD Logger Test</h1>
 
-  <script src="./hud.js"></script>
+  <!-- Load logger.js from the same directory -->
+  <script src="./logger.js"></script>
+
+  <script>
+    // Call the logger from the HTML page
+    log("HUD + logger.js both working.");
+    log("This is the next baby step.");
+  </script>
 </body>
 </html>
