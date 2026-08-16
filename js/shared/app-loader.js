@@ -1,6 +1,6 @@
 // FILE: /js/shared/app-loader.js
 
-import { ensureHUD, log } from "/js/shared/logger.js";
+import { ensureHUD, log } from "./js/shared/logger.js";
 
 async function loadConfig() {
   const res = await fetch("/config/app-config.json", { cache: "no-store" });
