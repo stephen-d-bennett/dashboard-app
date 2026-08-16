@@ -1,52 +1,57 @@
-// /js/shared/logger.js
+// FILE: /js/shared/logger.js
 
-export class Logger {
-  
-  constructor() {
-    this.key = "debug-log";
-    this.screenEl = null;
-  }
-  
-  ensureScreen() {
-    let el = document.getElementById("debug-console");
-    if (!el) {
-      el = document.createElement("div");
-      el.id = "debug-console";
-      el.style.position = "fixed";
-      el.style.top = "0";
-      el.style.left = "0";
-      el.style.width = "100%";
-      el.style.maxHeight = "30%";
-      el.style.overflowY = "auto";
-      el.style.background = "#0008";
-      el.style.color = "#0f0";
-      el.style.fontSize = "12px";
-      el.style.padding = "6px";
-      el.style.whiteSpace = "pre-wrap";
-      el.style.zIndex = "9999";
-      document.body.appendChild(el);
-    }
-    this.screenEl = el;
-  }
-
-  write(message) {
-    const timestamp = new Date().toISOString();
-    const entry = `${timestamp} - ${message}\n`;
-    const existing = localStorage.getItem(this.key) || "";
-    localStorage.setItem(this.key, existing + entry);
-  }
-
-  screen(message) {
-    if (!this.screenEl) return;
-    const div = document.createElement("div");
-    div.textContent = message;
-    this.screenEl.appendChild(div);
-  }
-
-  log(message) {
-    this.write(message);
-    this.screen(message);
+// Create HUD if missing
+export function ensureHUD() {
+  let hud = document.getElementById("debug-hud");
+  if (!hud) {
+    hud = document.createElement("pre");
+    hud.id = "debug-hud";
+    hud.style.cssText = `
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height: 40vh;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.85);
+      color: #0f0;
+      padding: 8px;
+      font-size: 12px;
+      white-space: pre-wrap;
+      z-index: 999999;
+    `;
+    document.body.appendChild(hud);
   }
 }
 
-export const Debug = new Logger();
+// Write to HUD + console
+export function log(msg) {
+  const hud = document.getElementById("debug-hud");
+  hud.textContent += msg + "\n";
+  console.log(msg);
+}
+
+// Hide HUD
+export function hideHUD() {
+  const hud = document.getElementById("debug-hud");
+  if (hud) hud.style.display = "none";
+}
+
+// Show HUD
+export function showHUD() {
+  const hud = document.getElementById("debug-hud");
+  if (hud) hud.style.display = "block";
+}
+
+// Toggle HUD
+export function toggleHUD() {
+  const hud = document.getElementById("debug-hud");
+  if (!hud) return;
+  hud.style.display = (hud.style.display === "none") ? "block" : "none";
+}
+
+// Clear HUD
+export function clearHUD() {
+  const hud = document.getElementById("debug-hud");
+  if (hud) hud.textContent = "";
+}

@@ -2,22 +2,19 @@
 <html lang="en">
   
   <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Cache control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
+
     <!-- Loader will insert correct CSS -->
     <link id="css-loader" rel="stylesheet" href="">
-    
   </head>
   
   <body>
-  
     <!-- Layout -->
     <div id="layout">
       <div id="sidebar">
@@ -51,20 +48,21 @@
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
     
-    <!-- Load correct version automatically (REPLACED) -->
-    <script type="module">
-      import { start } from "/js/shared/app-loader.js";
-
-      document.readyState === "loading"
-        ? document.addEventListener("DOMContentLoaded", start)
-        : start();
+    <!-- Classic script boots ES module AFTER DOM is ready -->
+    <script>
+      window.addEventListener("DOMContentLoaded", async () => {
+        const module = await import("/js/shared/app-loader.js");
+        module.start();
+      });
     </script>
 
+    <!-- Debug download button (assumes Debug is attached to window in your logger) -->
     <button onclick="Debug.download()" 
       style="position: fixed; bottom: 32%; right: 10px; z-index: 10000;">
-        Download Logs
+      Download Logs
     </button>
     
+    <!-- On-screen debug console (HUD) -->
     <div id="debug-console" 
       style="position: fixed;
         bottom: 0;
@@ -80,5 +78,4 @@
         z-index: 9999;"></div>
 
   </body>
-
 </html>
