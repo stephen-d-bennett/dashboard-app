@@ -1,3 +1,5 @@
+console.log("app-loader.js is running");
+
 import { log } from "./logger.js";
 import { start } from "./v2/app.js";
 
