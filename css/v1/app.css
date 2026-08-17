@@ -238,7 +238,10 @@ body {
   	opacity: 1;
 }
 
-/* Modal */
+/* ========================= */
+/*        MODAL              */
+/* ========================= */
+
 .modal {
   	position: fixed;
   	top: 0;
@@ -263,15 +266,25 @@ body {
   	box-shadow: 0 4px 12px var(--layout-shadow);
 }
 
-.preset-colors button {
-  	margin: 6px 0;
-  	width: 100%;
-  	padding: 10px;
-  	border-radius: 6px;
-  	border: none;
-  	cursor: pointer;
-  	color: white;
-  	font-weight: 600;
+/* -------------------------------------------------
+   PRESET BUTTONS
+--------------------------------------------------*/
+
+.preset {
+  background: var(--brand);
+  color: var(--layout-text-light);
+  border: none;
+  padding: 10px 14px;
+  margin: 6px 0;
+  width: 100%;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.preset:hover {
+  background: var(--brand-dark);
 }
 
 /* -------------------------------------------------
