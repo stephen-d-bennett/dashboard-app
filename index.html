@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard App</title>
+    <meta charset="UTF-8">
+    <title>App v1</title>
+
+    <!-- v1 CSS (very simple) -->
+    <link rel="stylesheet" href="css/v1/styles.css">
+
+    <!-- v1 JS -->
+    <script type="module" src="js/v1/app.js"></script>
 </head>
+
 <body>
 
-  <div id="app"></div>
+    <!-- ========================= -->
+    <!--        SIDEBAR            -->
+    <!-- ========================= -->
+    <aside id="sidebar">
+        <h2>Topics</h2>
+        <div id="topic-list"></div>
+    </aside>
 
-  <script type="module" src="/js/shared/app-loader.js"></script>
+    <button id="sidebar-toggle">☰</button>
+
+    <!-- ========================= -->
+    <!--        CONTENT PANEL      -->
+    <!-- ========================= -->
+    <main id="content-panel">
+        <!-- v1 injected topic/term content here -->
+    </main>
 
 </body>
 </html>

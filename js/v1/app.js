@@ -1,32 +1,10 @@
 // /js/v1/app.js
 
-
-
-
-// TEMPORARY DIAGNOSTIC
-
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("v1/app.js loaded");
-
-  document.getElementById("app").innerHTML = `
-    <h1 style="color: lime;">V1 Loaded</h1>
-    <p>This proves v1/app.js is executing.</p>
-  `;
-});
-
-
-
-
-
-
-/*
-import { Debug } from "../shared/logger.js";
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 import { Theme } from "./theme.js";
 
 // Apply theme immediately (safe -- does not touch DOM)
 Theme.apply("#253544");
-Debug.log("v1: theme applied");
 
 // Global state
 let CONFIG = null;
@@ -38,50 +16,34 @@ let client = null;
 // Main startup sequence (runs only after DOM is ready)
 // ---------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
-  Debug.log("v1: DOMContentLoaded fired");
-  Debug.log("v1: starting initialization");
 
   // Load config
-  Debug.log("v1: loading config...");
   CONFIG = await loadConfig();
   if (!CONFIG) {
-    Debug.log("v1: CONFIG FAILED");
     return;
   }
-  Debug.log("v1: config loaded");
 
   // Initialize Supabase
   SUPABASE_URL = CONFIG.env.supabaseUrl;
   SUPABASE_KEY = CONFIG.env.supabaseKey;
   client = createClient(SUPABASE_URL, SUPABASE_KEY);
-  Debug.log("v1: Supabase client initialized");
 
   // Build UI (DOM is ready)
-  Debug.log("v1: building sidebar");
   await buildSidebar();
-  Debug.log("v1: sidebar built");
-
-  Debug.log("v1: wiring modal");
   wireModal();
-  Debug.log("v1: modal wired");
-
-  Debug.log("v1: wiring theme buttons");
   wireThemeButtons();
-  Debug.log("v1: theme buttons wired");
-
-  Debug.log("v1: initialization complete");
 });
 
 // ---------------------------------------------------------
 // Load Configuration From JSON File
 // ---------------------------------------------------------
+
 async function loadConfig() {
   try {
     const response = await fetch("config/app-config.json");
     if (!response.ok) throw new Error("Config file not found");
     return await response.json();
   } catch (err) {
-    Debug.log("v1: loadConfig error: " + err.message);
     return null;
   }
 }
@@ -89,11 +51,12 @@ async function loadConfig() {
 // -----------------------------------------------
 // Load Topics from Supabase and Group By Category
 // -----------------------------------------------
+
 async function loadTopics() {
+
   const { data, error } = await client.from('Catholic-Topics').select('*');
 
   if (error) {
-    Debug.log("v1: loadTopics error: " + error.message);
     return {};
   }
 
@@ -113,6 +76,7 @@ async function loadTopics() {
 // ---------------------------------------------
 // Wire Modal Buttons
 // ---------------------------------------------
+
 function wireModal() {
   document.getElementById("sidebar-settings").onclick = () => {
     document.getElementById("preferences-modal").classList.remove("hidden");
@@ -126,6 +90,7 @@ function wireModal() {
 // ---------------------------------------------
 // Wire Theme Buttons
 // ---------------------------------------------
+
 function wireThemeButtons() {
   document.querySelectorAll(".preset").forEach(btn => {
     btn.onclick = () => Theme.apply(btn.dataset.color);
@@ -140,10 +105,9 @@ function wireThemeButtons() {
 // ---------------------------------------------
 // Build the Sidebar
 // ---------------------------------------------
+
 async function buildSidebar() {
   const categories = await loadTopics();
-  Debug.log("v1: categories loaded: " + Object.keys(categories).length);
-
   const container = document.getElementById('sidebar-categories');
   container.innerHTML = '';
 
@@ -191,6 +155,7 @@ async function buildSidebar() {
 // ---------------------------------------------
 // Use Renderer to Display Topic
 // ---------------------------------------------
+
 function showContent(item) {
   renderArticle(item);
 }
@@ -198,6 +163,7 @@ function showContent(item) {
 // ---------------------------------------------
 // Render Categories
 // ---------------------------------------------
+
 function renderCategories(data) {
   const categories = [
     ...new Set(
@@ -222,6 +188,7 @@ function renderCategories(data) {
 // ---------------------------------------------
 // Render Topic List
 // ---------------------------------------------
+
 function renderTopicList(data) {
   const container = document.getElementById("topic-list");
   container.innerHTML = "";
@@ -238,6 +205,7 @@ function renderTopicList(data) {
 // ---------------------------------------------
 // Filter by Category
 // ---------------------------------------------
+
 function filterByCategory(category, data) {
   const filtered = data.filter(item =>
     Array.isArray(item.categories) && item.categories.includes(category)
@@ -250,6 +218,7 @@ function filterByCategory(category, data) {
 // ---------------------------------------------
 // Render Article (Original Renderer)
 // ---------------------------------------------
+
 function renderArticle(item) {
   const container = document.getElementById("content-panel");
   container.innerHTML = `<h1>${item.title}</h1>`;
@@ -332,4 +301,3 @@ function renderArticle(item) {
     }
   });
 }
-*/
