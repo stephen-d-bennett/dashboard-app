@@ -2,6 +2,24 @@
    GLOBAL LAYOUT
 --------------------------------------------------*/
 
+:root {
+  --brand-dark: #1E2A3A;
+  --brand: #2C3E50;
+  --brand-light: #3F5164;
+  --brand-lighter: #4F6275;
+
+  --brand-accent: #C9A44A;
+  --brand-accent-light: #E8C56A;
+
+  --layout-bg: #F5F6F7;
+  --layout-panel-bg: #FFFFFF;
+  --layout-panel-accent: #F2F4F6;
+  --layout-text: #2E2E2E;
+  --layout-text-light: #F8F9FA;
+  --layout-border: #D9DCE0;
+  --layout-shadow: rgba(0,0,0,0.15);
+}
+
 #layout {
   display: flex;
   height: 100vh;
