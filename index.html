@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>App v1</title>
-
     <link rel="stylesheet" href="css/v1/app.css">
     <script type="module" src="js/v1/app.js"></script>
 </head>
@@ -11,55 +10,39 @@
 <body>
 
     <div id="layout">
-
         <!-- ========================= -->
         <!--        SIDEBAR            -->
         <!-- ========================= -->
         <aside id="sidebar">
-
             <div id="sidebar-header">
                 <h2>Topics</h2>
-
-                <!-- EXACT gear emoji used in v1 -->
+                <div id="sidebar-categories"></div>
                 <div id="sidebar-settings">⚙️</div>
             </div>
-
-            <!-- Scrollable categories -->
-            <div id="sidebar-categories"></div>
-
         </aside>
-
-
         <!-- ========================= -->
         <!--        MAIN PANEL         -->
         <!-- ========================= -->
         <div id="main">
             <div id="content-panel"></div>
         </div>
-
     </div>
-
 
     <!-- ========================= -->
     <!--     PREFERENCES MODAL     -->
     <!-- ========================= -->
     <div id="preferences-modal" class="modal hidden">
         <div class="modal-content">
-
             <h3>Preferences</h3>
-
             <div class="preset-colors">
                 <button class="preset" data-color="#253544">Default</button>
                 <button class="preset" data-color="#445566">Slate</button>
                 <button class="preset" data-color="#112233">Deep</button>
             </div>
-
             <label for="custom-color">Custom Color</label>
             <input id="custom-color" type="text" placeholder="#253544">
-
             <button id="apply-custom">Apply</button>
             <button id="close-modal">Close</button>
-
         </div>
     </div>
 
