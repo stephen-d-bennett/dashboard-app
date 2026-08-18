@@ -3,32 +3,28 @@
 import { loadAllTopics } from "../core/fetch.js";
 import { qs, createEl } from "../utils/dom.js";
 
-// -------------------------------------------------
-// INITIALIZE SIDEBAR
-// -------------------------------------------------
+export function Sidebar(runtime) {
 
-export async function initSidebar() {
-	const sidebar = qs("#sidebar-categories");
+  // DOM is guaranteed to exist because loader calls this AFTER DOMContentLoaded
+  const sidebar = qs("#sidebar-categories");
   if (!sidebar) {
     console.warn("Sidebar element not found");
     return;
   }
 
-  try {
-    const topics = await loadAllTopics();
-    renderSidebarItems(sidebar, topics);
-    attachSidebarEvents(sidebar);
-  } catch (err) {
-    console.error("Failed to load sidebar topics:", err);
-  }
+  // Load topics AFTER DOM is ready
+  loadAllTopics()
+    .then(topics => {
+      renderSidebarItems(sidebar, topics);
+      attachSidebarEvents(sidebar);
+    })
+    .catch(err => {
+      console.error("Failed to load sidebar topics:", err);
+    });
 }
 
-// -------------------------------------------------
-// RENDER SIDEBAR ITEMS
-// -------------------------------------------------
-
 function renderSidebarItems(sidebar, topics) {
-  sidebar.innerHTML = ""; // Clear existing content
+  sidebar.innerHTML = "";
 
   topics.forEach(topic => {
     const item = createEl("div", {
@@ -41,10 +37,6 @@ function renderSidebarItems(sidebar, topics) {
   });
 }
 
-// -------------------------------------------------
-// SIDEBAR CLICK HANDLING
-// -------------------------------------------------
-
 function attachSidebarEvents(sidebar) {
   sidebar.addEventListener("click", (e) => {
     const item = e.target.closest("[data-topic]");
@@ -52,21 +44,8 @@ function attachSidebarEvents(sidebar) {
 
     const slug = item.dataset.topic;
 
-    // Dispatch event for router.js
     document.dispatchEvent(
       new CustomEvent("topic:select", { detail: { slug } })
     );
-  });
-}
-
-// -------------------------------------------------
-// EXTERNAL API: highlight active item
-// (router.js calls this)
-// -------------------------------------------------
-
-export function highlightSidebarItem(slug) {
-  const items = document.querySelectorAll("[data-topic]");
-  items.forEach(item => {
-    item.classList.toggle("is-active", item.dataset.topic === slug);
   });
 }

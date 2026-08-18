@@ -68,3 +68,41 @@ export function closePanel() {
 export function openPanelForTopic() {
   openPanel();
 }
+
+
+// /js/v2/components/content-panel.js
+
+import { qs } from "../utils/dom.js";
+import { renderTopicContent } from "../core/render.js";
+
+// -------------------------------------------------
+// INITIALIZE CONTENT PANEL (loader calls this AFTER DOM is ready)
+// -------------------------------------------------
+
+export function initContentPanel(runtime) {
+  const panel = qs("#content-panel");
+  if (!panel) {
+    console.warn("Content panel element not found");
+    return;
+  }
+
+  // Listen for topic selection events
+  document.addEventListener("topic:select", (e) => {
+    const { slug } = e.detail;
+    updateContentPanel(panel, slug, runtime);
+  });
+
+  // Optionally render default content if v1 did this
+  if (runtime.defaultTopic) {
+    updateContentPanel(panel, runtime.defaultTopic, runtime);
+  }
+}
+
+// -------------------------------------------------
+// UPDATE CONTENT PANEL
+// -------------------------------------------------
+
+function updateContentPanel(panel, slug, runtime) {
+  // renderTopicContent may be async internally, but this function does not need to be async
+  renderTopicContent(panel, slug, runtime);
+}

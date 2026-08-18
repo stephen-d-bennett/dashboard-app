@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>App v1</title>
-    <link rel="stylesheet" href="css/v1/app.css">
-    <script type="module" src="js/v1/app.js"></script>
+    <title>App</title>
+    <!-- Loader controls everything -->
+    <script type="module" src="js/shared/app-loader.js"></script>
 </head>
 
 <body>
@@ -58,6 +59,23 @@
         
         </div>
     </div>
+    
+    <div id="about-modal" class="hidden about-modal">
+      <div class="about-content">
+        <h2>About This App</h2>
+        <p><strong>Version:</strong> <span id="about-version"></span></p>
+        <p><strong>Loader:</strong> <span id="about-loader"></span></p>
+        <p><strong>Runtime:</strong> <span id="about-runtime"></span></p>
+        <p><strong>HUD:</strong> <span id="about-hud"></span></p>
+        <p><strong>Debug:</strong> <span id="about-debug"></span></p>
+        <p><strong>Theme Engine:</strong> <span id="about-theme"></span></p>
+        <p><strong>Supabase:</strong> <span id="about-supabase"></span></p>
+        <p><strong>Build:</strong> <span id="about-build"></span></p>
+        <button id="about-close">Close</button>
+      </div>
+    </div>
+
+    <button id="help-about" class="help-button">Help → About</button>
 
 </body>
 </html>

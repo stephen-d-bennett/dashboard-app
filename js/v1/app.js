@@ -1,5 +1,6 @@
 // /js/v1/app.js
 
+import { runtime } from "./runtime.js";   // MUST be at the top
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 import { Theme } from "./theme.js";
 
@@ -13,10 +14,12 @@ let SUPABASE_KEY = null;
 let client = null;
 
 // ---------------------------------------------------------
-// Main startup sequence (runs only after DOM is ready)
+// Versioned startup entry point (called by shared loader)
 // ---------------------------------------------------------
-document.addEventListener("DOMContentLoaded", async () => {
-
+export async function init(runtime) {     // MUST NOT accept runtime
+  
+  runtime.log("v1 dummy runtime active"); // should produce NO HUD output
+  
   // Load config
   CONFIG = await loadConfig();
   if (!CONFIG) {
@@ -28,11 +31,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   SUPABASE_KEY = CONFIG.env.supabaseKey;
   client = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // Build UI (DOM is ready)
+  // Build UI (DOM is ready by the time loader calls init)
   await buildSidebar();
   wireModal();
   wireThemeButtons();
-});
+}
 
 // ---------------------------------------------------------
 // Load Configuration From JSON File
@@ -53,8 +56,7 @@ async function loadConfig() {
 // -----------------------------------------------
 
 async function loadTopics() {
-
-  const { data, error } = await client.from('Catholic-Topics').select('*');
+  const { data, error } = await client.from("Catholic-Topics").select("*");
 
   if (error) {
     return {};
@@ -108,48 +110,51 @@ function wireThemeButtons() {
 
 async function buildSidebar() {
   const categories = await loadTopics();
-  const container = document.getElementById('sidebar-categories');
-  container.innerHTML = '';
+  const container = document.getElementById("sidebar-categories");
+  container.innerHTML = "";
 
   Object.keys(categories).forEach(cat => {
-    const header = document.createElement('div');
-    header.className = 'category-header';
+    const header = document.createElement("div");
+    header.className = "category-header";
     header.textContent = cat;
 
-    const items = document.createElement('div');
-    items.className = 'category-items';
+    const items = document.createElement("div");
+    items.className = "category-items";
 
     categories[cat].forEach(topic => {
-      const item = document.createElement('div');
-      item.className = 'topic';
+      const item = document.createElement("div");
+      item.className = "topic";
       item.textContent = topic.title;
 
-      item.addEventListener('click', () => {
-        document.querySelectorAll('.topic').forEach(t => t.classList.remove('active'));
-        item.classList.add('active');
+      item.addEventListener("click", () => {
+        document.querySelectorAll(".topic").forEach(t =>
+          t.classList.remove("active")
+        );
+        item.classList.add("active");
         showContent(topic);
       });
 
       items.appendChild(item);
     });
 
-    header.addEventListener('click', () => {
-      document.querySelectorAll('.category-items').forEach(section => {
+    header.addEventListener("click", () => {
+      document.querySelectorAll(".category-items").forEach(section => {
         if (section !== items) {
-          section.classList.remove('expanded');
-          section.previousSibling.classList.remove('expanded');
+          section.classList.remove("expanded");
+          section.previousSibling.classList.remove("expanded");
         }
       });
 
-      const isExpanded = items.classList.toggle('expanded');
-      header.classList.toggle('expanded', isExpanded);
+      const isExpanded = items.classList.toggle("expanded");
+      header.classList.toggle("expanded", isExpanded);
     });
 
     container.appendChild(header);
     container.appendChild(items);
   });
 
-  document.getElementById("content-panel").innerHTML = "<h1>Select a topic</h1>";
+  document.getElementById("content-panel").innerHTML =
+    "<h1>Select a topic</h1>";
 }
 
 // ---------------------------------------------
@@ -207,8 +212,9 @@ function renderTopicList(data) {
 // ---------------------------------------------
 
 function filterByCategory(category, data) {
-  const filtered = data.filter(item =>
-    Array.isArray(item.categories) && item.categories.includes(category)
+  const filtered = data.filter(
+    item =>
+      Array.isArray(item.categories) && item.categories.includes(category)
   );
 
   renderTopicList(filtered);

@@ -381,4 +381,45 @@ ol {
   color: var(--brand-dark);
 }
 
+/* -------------------------------------------------
+   ABOUT
+--------------------------------------------------*/
+
+.about-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.about-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  font-family: sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+.help-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #253544;
+  color: white;
+  font-size: 14px;
+}
+
 
