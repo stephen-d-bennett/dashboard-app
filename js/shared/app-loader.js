@@ -7,7 +7,7 @@ export async function start() {
     </div>`
   );
 
-  const module = await import("/js/v2/app.js");
+  const module = await import("./v2/app.js");
 
   document.body.insertAdjacentHTML(
     "afterbegin",

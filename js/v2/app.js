@@ -5,6 +5,7 @@ document.body.insertAdjacentHTML(
   </div>`
 );
 
+
 document.body.insertAdjacentHTML(
   "beforeend",
   `<div style="background:green; color:white; padding:10px;">
