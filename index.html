@@ -2,62 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>App v1</title>
-    <link rel="stylesheet" href="css/v1/app.css">
-    <script type="module" src="js/v1/app.js"></script>
+    <title>Dashboard App</title>
 </head>
 
 <body>
 
-    <div id="layout">
-        
-        <aside id="sidebar">
+    <!-- The loader will build everything inside this -->
+    <div id="app"></div>
 
-            <!-- Header at the top -->
-            <div id="sidebar-header">
-                <h2>Topics</h2>
-            </div>
-
-            <!-- Scrollable categories in the middle -->
-            <div id="sidebar-categories"></div>
-            
-            <!-- Preferences button at the bottom -->
-            <div id="sidebar-settings">⚙️</div>
-
-        </aside>
-        
-        <!-- ========================= -->
-        <!--        MAIN PANEL         -->
-        <!-- ========================= -->
-        
-        <div id="main">
-            <div id="content-panel"></div>
-        </div>
-    </div>
-
-    <!-- ========================= -->
-    <!--     PREFERENCES MODAL     -->
-    <!-- ========================= -->
-    
-    <div id="preferences-modal" class="modal hidden">
-        <div class="modal-content">
-            
-            <h3>Preferences</h3>
-            
-            <div class="preset-colors">
-                <button class="preset" data-color="#8B1E2F">Cardinal Red</button>
-                <button class="preset" data-color="#1F3B73">Marian Blue</button>
-                <button class="preset" data-color="#1E4D2B">Forest Green</button>
-            </div>
-            
-            <label for="custom-color">Custom Color</label>
-            <input id="custom-color" type="text" placeholder="#253544">
-            
-            <button id="apply-custom">Apply</button>
-            <button id="close-modal">Close</button>
-        
-        </div>
-    </div>
+    <!-- The ONLY script the HTML ever loads -->
+    <script type="module" src="js/shared/app-loader.js"></script>
 
 </body>
 </html>
