@@ -14,7 +14,7 @@ export async function start() {
     </div>`
   );
 
-  const module = await import("./v2/app.js");
+  const module = await import("https://stephen-d-bennett.github.io/dashboard-app/js/v2/app.js");
 
   document.body.insertAdjacentHTML(
     "afterbegin",
@@ -23,3 +23,4 @@ export async function start() {
     </div>`
   );
 }
+
