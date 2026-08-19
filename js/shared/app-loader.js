@@ -29,6 +29,14 @@ async function start() {
 
     // Load JS module
     const module = await import(`/js/${config.version}/app.js`);
+    
+    document.body.insertAdjacentHTML(
+    "afterbegin",
+      `<div style="background:blue; color:white; padding:10px;">
+      LOADER: after import()
+      </div>`
+    );
+
 
     // Run init()
     if (typeof module.init === "function") {
