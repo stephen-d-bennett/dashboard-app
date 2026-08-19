@@ -1,4 +1,12 @@
 // FILE: /js/v2/app.js
+
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `<div style="background:red; color:white; padding:10px;">
+     app.js LOADED (top-level)
+   </div>`
+);
+
 export async function init() {
   
   
