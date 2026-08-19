@@ -15,11 +15,42 @@
     <!-- <div id="app"></div> -->
 
     <!-- The ONLY script the HTML ever loads -->
-    <script type="module">
-      window.addEventListener("DOMContentLoaded", async () => {
-        const { start } = await import("/js/shared/app-loader.js");
-        start();
-      });
-    </script>
+<script type="module">
+  window.addEventListener("DOMContentLoaded", async () => {
+
+    // ORANGE -- proves the HTML script is running
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      `<div style="background:orange;color:white;padding:10px;">
+         HTML SCRIPT RAN
+       </div>`
+    );
+
+    try {
+      const module = await import("/js/shared/app-loader.js");
+
+      // PURPLE -- proves the import succeeded
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `<div style="background:purple;color:white;padding:10px;">
+           HTML IMPORT SUCCEEDED
+         </div>`
+      );
+
+      module.start();
+
+    } catch (err) {
+
+      // YELLOW -- proves the import failed
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `<div style="background:yellow;color:black;padding:10px;">
+           HTML IMPORT FAILED: ${err.message}
+         </div>`
+      );
+    }
+  });
+</script>
+
 </body>
 </html>
