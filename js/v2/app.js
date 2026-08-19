@@ -1,13 +1,13 @@
-//document.body.insertAdjacentHTML(
-//  "afterbegin",
-//  `<div style="background:red; color:white; padding:10px;">
-//     app.js TOP-LEVEL RAN
-//   </div>`
-//);
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `<div style="background:purple; color:white; padding:10px;">
+    MODULE: top-level ran
+  </div>`
+);
 
-//document.body.insertAdjacentHTML(
-//  "beforeend",
-//  `<div style="background:green; color:white; padding:10px;">
-//     END OF app.js
-//   </div>`
-//);
+document.body.insertAdjacentHTML(
+  "beforeend",
+  `<div style="background:green; color:white; padding:10px;">
+    MODULE: end of file
+  </div>`
+);
