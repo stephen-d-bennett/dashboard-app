@@ -1,24 +1,40 @@
 // FILE: /js/shared/app-loader.js
 
 async function start() {
+
+    // STEP 2 -- Loader started
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      `<div style="background:red; color:white; padding:10px;">
+         Loader started
+       </div>`
+    );
+
     // Load config
     const config = await fetch("/config/app-config.json").then(r => r.json());
 
-    // Load CSS for the selected version
+    // STEP 3 -- Importing module
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      `<div style="background:orange; color:black; padding:10px;">
+         Importing: /js/${config.version}/app.js
+       </div>`
+    );
+
+    // Load CSS
     const css = document.createElement("link");
     css.rel = "stylesheet";
     css.href = `/css/${config.version}/app.css`;
     document.head.appendChild(css);
 
-    // Load JS for the selected version
+    // Load JS module
     const module = await import(`/js/${config.version}/app.js`);
 
-    // Run the version's init() function
+    // Run init()
     if (typeof module.init === "function") {
         module.init();
     }
 }
 
 start();
-
 
