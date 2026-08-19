@@ -11,7 +11,10 @@
     <div id="app"></div>
 
     <!-- The ONLY script the HTML ever loads -->
-    <script type="module" src="js/shared/app-loader.js"></script>
+    <script type="module">
+        import { start } from "js/shared/app-loader.js";
+        start();
+    </script>
 
 </body>
 </html>

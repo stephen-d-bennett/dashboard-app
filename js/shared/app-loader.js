@@ -44,5 +44,6 @@ async function start() {
     }
 }
 
-start();
+export { start };
+
 
