@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard App</title>
-    <link rel="manifest" href="/manifest.json">
-</head>
-
-<body>
-    <div style="background:black;color:white;padding:10px;">
-        URL: <script>document.write(location.href)</script>
-    </div>
-
-    <!-- The loader will build everything inside this -->
-    <!-- <div id="app"></div> -->
-
-    <!-- The ONLY script the HTML ever loads -->
 <script type="module">
   window.addEventListener("DOMContentLoaded", async () => {
 
-    // ORANGE -- proves the HTML script is running
     document.body.insertAdjacentHTML(
       "beforeend",
       `<div style="background:orange;color:white;padding:10px;">
@@ -27,9 +9,8 @@
     );
 
     try {
-      const module = await import("/js/shared/app-loader.js");
+      const module = await import("https://stephen-d-bennett.github.io/dashboard-app/js/shared/app-loader.js");
 
-      // PURPLE -- proves the import succeeded
       document.body.insertAdjacentHTML(
         "beforeend",
         `<div style="background:purple;color:white;padding:10px;">
@@ -40,8 +21,6 @@
       module.start();
 
     } catch (err) {
-
-      // YELLOW -- proves the import failed
       document.body.insertAdjacentHTML(
         "beforeend",
         `<div style="background:yellow;color:black;padding:10px;">
@@ -51,6 +30,3 @@
     }
   });
 </script>
-
-</body>
-</html>
