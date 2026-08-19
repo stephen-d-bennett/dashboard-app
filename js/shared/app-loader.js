@@ -1,6 +1,6 @@
 // FILE: /js/shared/app-loader.js
 
-async function start() {
+// async function start() {
 
     // STEP 2 -- Loader started
     //document.body.insertAdjacentHTML(
@@ -11,7 +11,7 @@ async function start() {
     //);
 
     // Load config
-    const config = await fetch("config/app-config.json").then(r => r.json());
+    // const config = await fetch("config/app-config.json").then(r => r.json());
 
     // STEP 3 -- Importing module
     //document.body.insertAdjacentHTML(
@@ -41,8 +41,8 @@ async function start() {
     //if (typeof module.init === "function") {
         module.init();
     //}
-}
+//}
 
-export { start };
+//export { start };
 
 
