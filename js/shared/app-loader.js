@@ -22,10 +22,10 @@ async function start() {
     );
 
     // Load CSS
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = `/css/${config.version}/app.css`;
-    document.head.appendChild(css);
+    // const css = document.createElement("link");
+    // css.rel = "stylesheet";
+    // css.href = `/css/${config.version}/app.css`;
+    // document.head.appendChild(css);
 
     // Load JS module
     const module = await import(`/js/${config.version}/app.js`);
