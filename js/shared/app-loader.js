@@ -37,7 +37,6 @@ async function start() {
       </div>`
     );
 
-
     // Run init()
     if (typeof module.init === "function") {
         module.init();
