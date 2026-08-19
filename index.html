@@ -7,7 +7,6 @@
 </head>
 
 <body>
-    
     <div style="background:black;color:white;padding:10px;">
         URL: <script>document.write(location.href)</script>
     </div>
@@ -17,9 +16,10 @@
 
     <!-- The ONLY script the HTML ever loads -->
     <script type="module">
-      import { start } from "/js/shared/app-loader.js";
-      start();
+      window.addEventListener("DOMContentLoaded", async () => {
+        const { start } = await import("/js/shared/app-loader.js");
+        start();
+      });
     </script>
-    
 </body>
 </html>
