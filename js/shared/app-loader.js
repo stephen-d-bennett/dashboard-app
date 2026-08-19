@@ -11,7 +11,7 @@ async function start() {
     );
 
     // Load config
-    const config = await fetch("/config/app-config.json").then(r => r.json());
+    const config = await fetch("config/app-config.json").then(r => r.json());
 
     // STEP 3 -- Importing module
     document.body.insertAdjacentHTML(
