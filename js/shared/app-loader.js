@@ -1,6 +1,13 @@
 export async function start() {
 
   document.body.insertAdjacentHTML(
+  "afterbegin",
+  `<div style="background:green; color:white; padding:10px;">
+    LOADER: function entered
+  </div>`
+  );
+
+  document.body.insertAdjacentHTML(
     "afterbegin",
     `<div style="background:red; color:white; padding:10px;">
       LOADER: started
