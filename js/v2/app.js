@@ -1,10 +1,11 @@
 // FILE: /js/v2/app.js
-
 export async function init() {
     const app = document.getElementById("app");
 
     app.innerHTML = `
-        <h1>v2 runtime loaded</h1>
-        <p>Start building your new layout, components, and controllers here.</p>
+        <div style="padding:20px; background:#222; color:#fff;">
+            <h1>v2 init() RAN</h1>
+            <p>If you see this, v2/app.js loaded and init() executed.</p>
+        </div>
     `;
 }
