@@ -4,6 +4,7 @@ document.body.insertAdjacentHTML(
      app.js TOP-LEVEL RAN
    </div>`
 );
+
 document.body.insertAdjacentHTML(
   "beforeend",
   `<div style="background:green; color:white; padding:10px;">
