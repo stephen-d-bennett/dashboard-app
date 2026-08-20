@@ -12,3 +12,14 @@ document.body.insertAdjacentHTML(
     MODULE: end of file
   </div>`
 );
+
+export function startApp() {
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `<div style="background:black;color:white;padding:10px;">
+      APP: startApp() called
+    </div>`
+  );
+
+  // later: initialize controllers, HUD, theme engine, etc.
+}
