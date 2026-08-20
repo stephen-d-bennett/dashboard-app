@@ -22,7 +22,9 @@ export async function start() {
       LOADER: after import()
     </div>`
   );
+  
+  module.startApp();
+
 }
 
 
-module.startApp();
